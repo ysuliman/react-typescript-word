@@ -1,0 +1,96 @@
+.tile {
+    font-size: 2em;
+    color: white;
+    border: .05em solid hsl(240, 2%, 23%);
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    transition: transform 250ms linear;
+}
+
+.tile.active {
+    border-color: hsl(200, 1%, 34%);
+}
+
+.tile.wrong-letter {
+    background-color: hsl(240, 2%, 23%);
+    border: none;
+}
+
+.tile.wrong-location {
+    background-color: hsl(49, 51%, 47%);
+    border: none;
+}
+
+.tile.correct {
+    background-color: hsl(115, 29%, 43%);
+    border: none;
+}
+
+.tile.shake {
+    animation: shake 250ms ease-in-out;
+}
+
+.tile.flip {
+    transform: rotateX(90deg);
+}
+
+.tile.dance {
+    animation: dance 500ms ease-in-out;
+}
+
+@keyframes dance {
+    20% {
+        transform: translateY(-50%);
+    }
+
+    40% {
+        transform: translateY(5%);
+    }
+
+    60% {
+        transform: translateY(-25%);
+    }
+
+    80% {
+        transform: translateY(-2.5%);
+    }
+
+    90% {
+        transform: translateY(-5%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes shake {
+    10% {
+        transform: translate(-5%);
+    }
+
+    30% {
+        transform: translate(5%);
+    }
+
+    50% {
+        transform: translate(-7.5%);
+    }
+
+    70% {
+        transform: translate(7.5%);
+    }
+
+    90% {
+        transform: translate(5%);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+
+}

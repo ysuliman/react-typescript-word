@@ -1,0 +1,8 @@
+.guess-grid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    flex-grow: 1;
+    gap: .25em;
+    margin-bottom: 1em;
+}
