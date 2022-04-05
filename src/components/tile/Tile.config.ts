@@ -1,3 +1,5 @@
 export interface TileProps {
-    wordIndex: number
+    wordIndex: number,
+    rowIndex: number,
+    letter: string
 }

@@ -1,3 +1,5 @@
 export interface TileRowProps {
-    wordLength: number;
+    wordLength: number,
+    rowIndex: number,
+    currentGuess: string
 }

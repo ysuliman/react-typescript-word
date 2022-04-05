@@ -7,10 +7,14 @@ import { GameStateContext } from '../../context/GameStateProvider'
 
 
 const GuessGrid = () => {
-    const { targetWord, numberOfGuesses } = useContext(GameStateContext)
+    const { currentGuessIndex, currentGuesses, targetWord, numberOfGuesses } = useContext(GameStateContext)
 
     const tileRows = [...Array(numberOfGuesses)].map((_, index) => {
-        return <TileRow key={index} wordLength={targetWord.length} />
+        return <TileRow
+            key={index}
+            rowIndex={index}
+            wordLength={targetWord.length}
+            currentGuess={currentGuesses[index] || ''} />
     })
 
 

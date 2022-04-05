@@ -4,14 +4,14 @@ import { TileProps } from './Tile.config'
 
 
 const Tile = (props: TileProps) => {
-    const { wordIndex } = { ...props }
+    const { letter, rowIndex, wordIndex } = { ...props }
 
 
     return (
         <div
             className={styles.tile}
         >
-            {wordIndex}
+            {letter}
         </div>
     )
 }

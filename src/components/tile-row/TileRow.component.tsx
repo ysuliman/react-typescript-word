@@ -5,10 +5,14 @@ import Tile from '../tile/Tile.component'
 
 
 const TileRow = (props: TileRowProps) => {
-    const { wordLength } = { ...props }
+    const { currentGuess, rowIndex, wordLength } = { ...props }
 
     const tiles = [...Array(wordLength)].map((_, index) => {
-        return <Tile key={index} wordIndex={index}></Tile>
+        return <Tile
+            key={index}
+            wordIndex={index}
+            rowIndex={rowIndex}
+            letter={currentGuess[index] || ''}></Tile>
     })
 
 
