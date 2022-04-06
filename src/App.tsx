@@ -3,6 +3,7 @@ import React, { useCallback, useContext, useEffect } from 'react';
 import styles from './App.module.css'
 
 import GuessGrid from './components/guess-grid/GuessGrid.component'
+import Keyboard from './components/keyboard/Keyboard.component';
 import { GameDispatchContext } from './context/GameStateProvider';
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
   return (
     <div className={styles.App}>
       <GuessGrid />
+      <Keyboard />
     </div>
   );
 }

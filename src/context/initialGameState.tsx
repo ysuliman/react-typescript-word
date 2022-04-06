@@ -1,6 +1,6 @@
 export type LetterStatus = 'correct' | 'wrong-letter' | 'wrong-location' | 'none';
 
-type LetterStatuses = {
+export type LetterStatuses = {
     [letter: string]: LetterStatus
 };
 

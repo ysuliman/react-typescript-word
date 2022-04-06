@@ -81,5 +81,5 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
       }
 
   }
-  return draft;
-};
+  return draft
+}
