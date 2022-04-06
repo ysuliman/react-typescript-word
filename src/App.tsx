@@ -3,28 +3,18 @@ import React, { useCallback, useContext, useEffect } from 'react';
 import styles from './App.module.css'
 
 import GuessGrid from './components/guess-grid/GuessGrid.component'
-import { GameDispatchContext, GameStateContext } from './context/GameStateProvider';
+import { GameDispatchContext } from './context/GameStateProvider';
 
 const App = () => {
-  const { targetWord, numberOfGuesses } = useContext(GameStateContext)
   const gameDispatch = useContext(GameDispatchContext)
 
   const handleKeyPress = useCallback((ev: KeyboardEvent): void => {
-    if (ev.key === 'Enter') {
-      gameDispatch({ type: 'SUBMIT' })
-      return
-    }
+    if (ev.key === 'Enter') return gameDispatch({ type: 'SUBMIT' })
 
-    if (ev.key === "Backspace" || ev.key === "Delete") {
-      gameDispatch({ type: 'DELETE' })
-      return
-    }
+    if (ev.key === "Backspace" || ev.key === "Delete") return gameDispatch({ type: 'DELETE' })
 
-    if (ev.key.match(/^[a-zA-Z]$/)) {
-      gameDispatch({ type: 'LETTERPRESS', letter: ev.key })
-      return
-    }
-    return
+    if (ev.key.match(/^[a-zA-Z]$/)) return gameDispatch({ type: 'LETTERPRESS', letter: ev.key })
+
   }, [gameDispatch])
 
   useEffect(() => {

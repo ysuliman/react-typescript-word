@@ -1,26 +1,44 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
-import { TileRowProps } from './TileRow.config'
+import { TileRowProps } from './TileRow'
 import Tile from '../tile/Tile.component'
+import { GameStateContext } from '../../context/GameStateProvider'
 
 
 const TileRow = (props: TileRowProps) => {
-    const { currentGuess, rowIndex, wordLength } = { ...props }
+    const { activeGuessIndex, rowIndex, currentGuess, wordLength, isShakeRow, isDanceRow, isFlipRow } = { ...props }
+
+    const { letterStatuses } = useContext(GameStateContext)
+
+    const [letterToFlipIndex, setLetterToFlipInd] = useState(-1)
+
+    useEffect(() => {
+        if (isFlipRow) {
+            setLetterToFlipInd(0)
+        }
+    }, [isFlipRow])
 
     const tiles = [...Array(wordLength)].map((_, index) => {
+        const letter = currentGuess[index] || ''
+        const isActive = !!letter && activeGuessIndex === rowIndex
+
+        const letterStatus = letterStatuses[letter] || 'none'
+
         return <Tile
             key={index}
-            wordIndex={index}
-            rowIndex={rowIndex}
-            letter={currentGuess[index] || ''}></Tile>
+            letterIndex={index}
+            isActive={isActive}
+            letter={letter}
+            letterStatus={letterStatus}
+            letterToFlipIndex={letterToFlipIndex}
+            setLetterToFlipInd={setLetterToFlipInd}
+            shake={isShakeRow}
+            dance={isDanceRow}
+            isLastLetter={wordLength === index + 1}
+        />
     })
 
-
-    return (
-        <>
-            {tiles}
-        </>
-    )
+    return <>{tiles}</>
 }
 
 export default TileRow

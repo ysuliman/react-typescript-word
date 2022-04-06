@@ -1,27 +1,40 @@
-export const initialGameState = {
-  targetWord: 'sunnah',
-  numberOfGuesses: 6,
-  currentGuessIndex: 0,
-  currentGuesses: ['']
-}
+import { GameState } from "./initialGameState";
+import { GameDispatchAction } from "./GameReducer.config";
 
-export type gameState = typeof initialGameState
+export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
+  switch (action.type) {
+    case 'CHECKWINLOSE':
+      draft.isFlipActiveRow = false
+      if (draft.currentGuesses[draft.activeGuessIndex] === draft.targetWord) {
+        draft.isGuessMode = false
+        draft.isDanceActiveRow = true
+        console.log('You won!') //CHANGE TO ALERT
+        return draft
 
-interface nonLetterDispatchAction { type: 'SUBMIT' | 'DELETE' }
-interface letterDispatchAction { type: 'LETTERPRESS', letter: String }
-export type gameDispatchAction = nonLetterDispatchAction | letterDispatchAction
+      } else if (draft.activeGuessIndex === draft.numberOfGuesses - 1) {
+        draft.isGuessMode = false
+        console.log('You lost!') //CHANGE TO ALERT
+        return draft
 
-export const gameReducer = (draft: gameState, action: gameDispatchAction) => {
+      } else {
+        draft.isGuessMode = true
+        draft.activeGuessIndex += 1
+        draft.currentGuesses[draft.activeGuessIndex] = ''
+        return draft
+      }
 
-  let currentGuessIndex = draft.currentGuessIndex
+    case 'ENDSHAKE':
+      draft.isShakeActiveRow = false
+      return draft
+  }
 
-  let activeGuess = draft.currentGuesses[currentGuessIndex]
+  if (!draft.isGuessMode) return draft
+
+  let activeGuessIndex = draft.activeGuessIndex
+  let activeGuess = draft.currentGuesses[activeGuessIndex]
   const activeGuessLength = activeGuess.length
-
   const targetWord = draft.targetWord
   const targetWordLength = targetWord.length
-
-
 
   switch (action.type) {
     case 'LETTERPRESS':
@@ -29,9 +42,8 @@ export const gameReducer = (draft: gameState, action: gameDispatchAction) => {
         return draft
       } else {
         activeGuess += action.letter
-        draft.currentGuesses[currentGuessIndex] = activeGuess
+        draft.currentGuesses[activeGuessIndex] = activeGuess
       }
-      console.log(activeGuess)
       return draft
 
     case 'DELETE':
@@ -39,46 +51,32 @@ export const gameReducer = (draft: gameState, action: gameDispatchAction) => {
         return draft
       } else {
         activeGuess = activeGuess.slice(0, -1)
-        draft.currentGuesses[currentGuessIndex] = activeGuess
+        draft.currentGuesses[activeGuessIndex] = activeGuess
       }
-      console.log(activeGuess)
       return draft
 
     case 'SUBMIT':
       if (activeGuessLength !== targetWordLength) {
-        // Change to alert
-        console.log('Word not long enough!');
+        console.log('Word not long enough!')// Change to alert
+        draft.isShakeActiveRow = true
         return draft
 
       } else {
-
-        // Checking letters
         for (let i = 0; i < targetWordLength; i++) {
           const guessLetter = activeGuess[i]
           const targetLetter = targetWord[i]
           if (guessLetter === targetLetter) {
-            // Set to correct
+            draft.letterStatuses[guessLetter] = 'correct'
           } else if (targetWord.includes(guessLetter)) {
-            // Set to wrong location
+            draft.letterStatuses[guessLetter] = 'wrong-location'
           } else {
-            // Set to wrong letter
+            draft.letterStatuses[guessLetter] = 'wrong-letter'
           }
         }
-        // flip first letter to trigger reveal
 
-        draft.currentGuessIndex += 1
+        draft.isGuessMode = false
+        draft.isFlipActiveRow = true
 
-        // Check win
-        if (activeGuess === targetWord) {
-          console.log('You won!') //CHANGE TO ALERT
-          // change game mode
-        }
-
-        // Check lose
-        if (draft.currentGuessIndex === draft.numberOfGuesses) {
-          console.log('You lost!') //CHANGE TO ALERT
-          // change game mode
-        }
         return draft
       }
 
