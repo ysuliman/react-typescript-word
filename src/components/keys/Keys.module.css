@@ -1,12 +1,3 @@
-.keyboard {
-    display: grid;
-    grid-template-columns: repeat(20, minmax(auto, 1.25em));
-    grid-auto-rows: 3em;
-    gap: .25em;
-    justify-content: center;
-
-}
-
 .key {
     font-size: inherit;
     grid-column: span 2;
@@ -26,6 +17,14 @@
     user-select: none;
 }
 
+.key.light {
+    background-color: hsl(var(--hue, 214),
+            var(--saturation, 9%),
+            calc(var(--lightness-offset, 0%) + var(--lightness, 84%)));
+    color: black;
+    fill: black;
+}
+
 .key.large {
     grid-column: span 3;
 }
@@ -36,7 +35,7 @@
 }
 
 .key:hover,
-.hey:focus {
+.key:focus {
     --lightness-offset: 10%;
 }
 
@@ -54,4 +53,20 @@
     --hue: 115;
     --saturation: 29%;
     --lightness: 43%;
+}
+
+.key.wrong.light {
+    --lightness: 48%;
+}
+
+.key.wrong-location.light {
+    --hue: 49;
+    --saturation: 51%;
+    --lightness: 57%;
+}
+
+.key.correct.light {
+    --hue: 115;
+    --saturation: 29%;
+    --lightness: 53%;
 }

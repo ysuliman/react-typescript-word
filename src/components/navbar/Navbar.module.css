@@ -1,0 +1,11 @@
+.navbar {
+    background-color: inherit;
+    border-bottom: .08em solid hsl(240, 2%, 23%);
+    padding: .6em;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar.light {
+    border-bottom: .08em solid hsl(214, 9%, 84%)
+}

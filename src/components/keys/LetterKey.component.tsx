@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styles from './Keys.module.css'
 import classNames from 'classnames'
-import { GameDispatchContext } from '../../context/GameStateProvider'
+import { GameDispatchContext, GameStateContext } from '../../context/GameStateProvider'
 import { LetterStatus } from "../../context/initialGameState"
 
 interface LetterKeyProps {
@@ -11,11 +11,13 @@ interface LetterKeyProps {
 
 const LetterKey = ({ letter, status }: LetterKeyProps) => {
     const gameDispatch = useContext(GameDispatchContext)
+    const { isLightMode } = useContext(GameStateContext)
     const handleClick = () => gameDispatch({ type: 'LETTERPRESS', letter: letter })
 
     return (
         <button
             className={classNames(styles.key,
+                isLightMode && styles.light,
                 status === 'correct' && styles.correct,
                 status === 'wrong-location' && styles['wrong-location'],
                 status === 'wrong-letter' && styles.wrong)}

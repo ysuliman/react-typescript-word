@@ -1,15 +1,16 @@
 import classNames from 'classnames'
 import React, { useContext } from 'react'
-import { GameDispatchContext } from '../../context/GameStateProvider'
+import { GameDispatchContext, GameStateContext } from '../../context/GameStateProvider'
 import styles from './Keys.module.css'
 
 const DeleteKey = () => {
     const gameDispatch = useContext(GameDispatchContext)
+    const { isLightMode } = useContext(GameStateContext)
     const handleClick = () => gameDispatch({ type: 'DELETE' })
 
     return (
         <button
-            className={classNames(styles.key, styles.large)}
+            className={classNames(styles.key, styles.large, isLightMode && styles.light,)}
             onClick={handleClick}
         >
             <svg xmlns="http://www.w3.org/2000/svg" height="24px"

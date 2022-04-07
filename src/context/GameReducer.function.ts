@@ -35,6 +35,10 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
       draft.alertArray.shift()
       return draft
 
+    case 'TOGGLELIGHTMODE':
+      draft.isLightMode = !draft.isLightMode
+      return draft
+
   }
 
   if (!draft.isGuessMode) return draft
@@ -66,7 +70,7 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
 
     case 'SUBMIT':
       if (activeGuessLength !== targetWordLength) {
-        draft.alertArray.push({ alertMessage: 'Word Not Long Enough', showTime: 500 })
+        draft.alertArray.push({ alertMessage: 'Not enough letters', showTime: 500 })
         draft.isShakeActiveRow = true
         return draft
 

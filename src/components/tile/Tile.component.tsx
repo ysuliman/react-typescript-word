@@ -3,15 +3,17 @@ import styles from './Tile.module.css'
 import classNames from 'classnames'
 import { TileProps } from './Tile'
 import { useContext, useEffect, useState, AnimationEvent } from 'react'
-import { GameDispatchContext } from '../../context/GameStateProvider'
+import { GameDispatchContext, GameStateContext } from '../../context/GameStateProvider'
 
 const Tile = ({ letterIndex, isActive, letter, letterStatus, letterToFlipIndex, setLetterToFlipInd, shake, dance, isLastLetter }: TileProps) => {
 
     const [flip, setFlip] = useState(false)
     const [danceClass, setDanceClass] = useState(false)
+    const [isPop, setIsPop] = useState(false)
     const [letterClass, setLetterClass] = useState('')
 
     const gameDispatch = useContext(GameDispatchContext)
+    const { isLightMode } = useContext(GameStateContext)
 
     useEffect(() => {
         if (letterStatus && letterIndex === letterToFlipIndex) {
@@ -27,6 +29,9 @@ const Tile = ({ letterIndex, isActive, letter, letterStatus, letterToFlipIndex, 
         }
     }, [dance, letterIndex])
 
+    useEffect(() => {
+        if (isActive) setIsPop(true)
+    }, [isActive])
 
     const handleTransitionEnd = () => {
         const nextLetterIndex = letterIndex + 1
@@ -39,8 +44,8 @@ const Tile = ({ letterIndex, isActive, letter, letterStatus, letterToFlipIndex, 
     }
 
     const handleAnimationEnd = (e: AnimationEvent<HTMLDivElement>) => {
-        const animationName = e.animationName
-        if (isLastLetter && animationName.includes('shake')) gameDispatch({ type: 'ENDSHAKE' })
+        if (isLastLetter && e.animationName.includes('shake')) gameDispatch({ type: 'ENDSHAKE' })
+        if (e.animationName.includes('PopIn')) setIsPop(false)
     }
 
     return (
@@ -49,11 +54,13 @@ const Tile = ({ letterIndex, isActive, letter, letterStatus, letterToFlipIndex, 
                 styles.tile,
                 flip && styles.flip,
                 isActive && styles.active,
+                isPop && styles.pop,
                 letterClass === 'correct' && styles.correct,
                 letterClass === 'wrong-letter' && styles['wrong-letter'],
                 letterClass === 'wrong-location' && styles['wrong-location'],
                 shake && styles.shake,
-                danceClass && styles.dance
+                danceClass && styles.dance,
+                isLightMode && styles.light
 
             )}
 

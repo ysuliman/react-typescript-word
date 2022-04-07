@@ -23,7 +23,8 @@ export const initialGameState = {
     isDanceActiveRow: false,
     isFlipActiveRow: false,
     gameStart: true,
-    alertArray: [{ alertMessage: 'Sample Alert', showTime: 500 }] as { alertMessage: string, showTime: number }[]
+    alertArray: [{ alertMessage: 'Sample Alert', showTime: 500 }] as { alertMessage: string, showTime: number }[],
+    isLightMode: true
 }
 
 export type GameState = typeof initialGameState

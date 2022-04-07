@@ -1,15 +1,18 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import classNames from 'classnames';
+import { useCallback, useContext, useEffect } from 'react';
 
 import styles from './App.module.css'
-import Alert from './components/alert/Alert.component';
 import AlertContainer from './components/alert/AlertContainer.component';
 
 import GuessGrid from './components/guess-grid/GuessGrid.component'
 import Keyboard from './components/keyboard/Keyboard.component';
-import { GameDispatchContext } from './context/GameStateProvider';
+import Navbar from './components/navbar/Navbar.component';
+import { GameDispatchContext, GameStateContext } from './context/GameStateProvider';
 
 const App = () => {
   const gameDispatch = useContext(GameDispatchContext)
+
+  const { isLightMode } = useContext(GameStateContext)
 
   const handleKeyPress = useCallback((ev: KeyboardEvent): void => {
     if (ev.key === 'Enter') return gameDispatch({ type: 'SUBMIT' })
@@ -26,7 +29,9 @@ const App = () => {
 
 
   return (
-    <div className={styles.App}>
+    <div className={classNames(styles.App,
+      isLightMode && styles.light)}>
+      <Navbar />
       <AlertContainer />
       <GuessGrid />
       <Keyboard />
