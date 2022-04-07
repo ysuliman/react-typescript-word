@@ -3,12 +3,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { TileRowProps } from './TileRow'
 import Tile from '../tile/Tile.component'
 import { GameStateContext } from '../../context/GameStateProvider'
-
+import styles from './TileRow.module.css'
 
 const TileRow = (props: TileRowProps) => {
     const { activeGuessIndex, rowIndex, currentGuess, wordLength, isShakeRow, isDanceRow, isFlipRow } = { ...props }
 
-    const { letterStatuses } = useContext(GameStateContext)
+    const { guessLetterStatuses } = useContext(GameStateContext)
 
     const [letterToFlipIndex, setLetterToFlipInd] = useState(-1)
 
@@ -22,7 +22,8 @@ const TileRow = (props: TileRowProps) => {
         const letter = currentGuess[index] || ''
         const isActive = !!letter && activeGuessIndex === rowIndex
 
-        const letterStatus = letterStatuses[letter] || 'none'
+        const letterStatus = guessLetterStatuses[rowIndex][index]
+
 
         return <Tile
             key={index}

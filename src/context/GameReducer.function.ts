@@ -1,19 +1,23 @@
-import { GameState } from "./initialGameState";
-import { GameDispatchAction } from "./GameReducer.config";
+import { GameState } from "./initialGameState.config";
+import { GameDispatchAction } from './GameReducer'
 
 export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
+  if (draft.gameStart) {
+    draft.gameStart = false
+  }
+
   switch (action.type) {
     case 'CHECKWINLOSE':
       draft.isFlipActiveRow = false
       if (draft.currentGuesses[draft.activeGuessIndex] === draft.targetWord) {
         draft.isGuessMode = false
         draft.isDanceActiveRow = true
-        console.log('You won!') //CHANGE TO ALERT
+        draft.alertArray.push({ alertMessage: 'You Won!', showTime: 8000 })
         return draft
 
       } else if (draft.activeGuessIndex === draft.numberOfGuesses - 1) {
         draft.isGuessMode = false
-        console.log('You lost!') //CHANGE TO ALERT
+        draft.alertArray.push({ alertMessage: draft.targetWord.toUpperCase(), showTime: 8000 })
         return draft
 
       } else {
@@ -26,6 +30,11 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
     case 'ENDSHAKE':
       draft.isShakeActiveRow = false
       return draft
+
+    case 'REMOVEALERT':
+      draft.alertArray.shift()
+      return draft
+
   }
 
   if (!draft.isGuessMode) return draft
@@ -57,7 +66,7 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
 
     case 'SUBMIT':
       if (activeGuessLength !== targetWordLength) {
-        console.log('Word not long enough!')// Change to alert
+        draft.alertArray.push({ alertMessage: 'Word Not Long Enough', showTime: 500 })
         draft.isShakeActiveRow = true
         return draft
 
@@ -66,10 +75,13 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
           const guessLetter = activeGuess[i]
           const targetLetter = targetWord[i]
           if (guessLetter === targetLetter) {
+            draft.guessLetterStatuses[activeGuessIndex][i] = 'correct'
             draft.letterStatuses[guessLetter] = 'correct'
           } else if (targetWord.includes(guessLetter)) {
+            draft.guessLetterStatuses[activeGuessIndex][i] = 'wrong-location'
             draft.letterStatuses[guessLetter] = 'wrong-location'
           } else {
+            draft.guessLetterStatuses[activeGuessIndex][i] = 'wrong-letter'
             draft.letterStatuses[guessLetter] = 'wrong-letter'
           }
         }

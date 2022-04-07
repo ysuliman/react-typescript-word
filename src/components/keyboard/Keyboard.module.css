@@ -1,9 +1,11 @@
 .keyboard {
     display: grid;
-    grid-template-columns: repeat(20, minmax(auto, 1.25em));
+    grid-template-columns: repeat(20, minmax(auto, 1.3em));
     grid-auto-rows: 3em;
     gap: .25em;
     justify-content: center;
+    margin: .3em;
+    flex-grow: .5;
 
 }
 
