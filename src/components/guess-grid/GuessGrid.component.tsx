@@ -17,7 +17,7 @@ const GuessGrid = () => {
 
     const tileRows = [...Array(numberOfGuesses)].map((_, index) => {
         const isShakeRow = index === activeGuessIndex ? isShakeActiveRow : false
-        const isFlipRow = index === activeGuessIndex ? isFlipActiveRow : false
+        let isFlipRow = index === activeGuessIndex ? isFlipActiveRow : false
         const isDanceRow = index === activeGuessIndex ? isDanceActiveRow : false
 
         return <TileRow

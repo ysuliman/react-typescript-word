@@ -1,7 +1,7 @@
 import React, { createContext } from 'react'
 import { useImmerReducer } from 'use-immer'
 import { gameReducer } from './GameReducer.function'
-import { initialGameState } from "./initialGameState.config"
+import { initialGameState, newGameState } from "./initialGameState.config"
 
 export const GameStateContext = createContext(initialGameState)
 export const GameDispatchContext = createContext((value: any) => { })

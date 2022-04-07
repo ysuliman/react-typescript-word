@@ -1,8 +1,10 @@
-import { GameState } from "./initialGameState.config";
+import { GameState, newGameState } from "./initialGameState.config";
 import { GameDispatchAction } from './GameReducer'
+import { dictionary } from "./words.config";
 
 export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
   if (draft.gameStart) {
+    draft = newGameState()
     draft.gameStart = false
   }
 
@@ -13,11 +15,13 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
         draft.isGuessMode = false
         draft.isDanceActiveRow = true
         draft.alertArray.push({ alertMessage: 'You Won!', showTime: 8000 })
+        draft.gameStart = true
         return draft
 
       } else if (draft.activeGuessIndex === draft.numberOfGuesses - 1) {
         draft.isGuessMode = false
         draft.alertArray.push({ alertMessage: draft.targetWord.toUpperCase(), showTime: 8000 })
+        draft.gameStart = true
         return draft
 
       } else {
@@ -74,6 +78,10 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
         draft.isShakeActiveRow = true
         return draft
 
+      } else if (!dictionary.includes(activeGuess)) {
+        draft.alertArray.push({ alertMessage: 'Not in word list', showTime: 800 })
+        draft.isShakeActiveRow = true
+        return draft
       } else {
         for (let i = 0; i < targetWordLength; i++) {
           const guessLetter = activeGuess[i]
@@ -95,7 +103,6 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
 
         return draft
       }
-
   }
   return draft
 }

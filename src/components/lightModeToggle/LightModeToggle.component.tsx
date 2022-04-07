@@ -2,12 +2,11 @@ import { useContext } from 'react'
 import { GameDispatchContext, GameStateContext } from '../../context/GameStateProvider'
 
 import Toggle from 'react-toggle'
-import "react-toggle/style.css"
+import './LightModeToggle.css'
 
 import ToggleIcon from './ToggleIcon.component'
 
 const LightModeToggle = () => {
-    const { isLightMode } = useContext(GameStateContext)
     const gameDispatch = useContext(GameDispatchContext)
 
     const toggleLightMode = () => {
@@ -17,16 +16,15 @@ const LightModeToggle = () => {
 
     return (
         <>
-            <label>
-                <Toggle
-                    defaultChecked={isLightMode}
-                    icons={{
-                        checked: <ToggleIcon icon={'☀'} fill={'yellow'} left={-1} size={17} />,
-                        unchecked: <ToggleIcon icon={'🌙'} left={-3} size={12} />,
-                    }}
-                    onChange={toggleLightMode}
-                />
-            </label>
+            <Toggle
+                defaultChecked={true}
+                icons={{
+                    checked: <ToggleIcon icon={'☀'} fill={'#ffd000'} left={-1} size={17} />,
+                    unchecked: <ToggleIcon icon={'🌙'} left={-3} size={12} />,
+                }}
+                onChange={toggleLightMode}
+
+            />
         </>
     )
 }
