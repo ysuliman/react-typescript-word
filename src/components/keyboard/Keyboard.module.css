@@ -4,6 +4,6 @@
     grid-auto-rows: 3em;
     gap: .25em;
     justify-content: center;
-    margin: .3em;
-    flex-grow: .6;
+    margin: .3rem;
+    flex-grow: 1.5;
 }
