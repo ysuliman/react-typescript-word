@@ -27,6 +27,6 @@
   },
   "include": [
     "src",
-    "src/context/words.config.js"
+    "src/context/words.config.ts"
   ]
 }

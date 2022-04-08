@@ -65,7 +65,7 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
       if (activeGuessLength >= targetWordLength) {
         return draft
       } else {
-        activeGuess += action.letter
+        activeGuess += action.letter.toLowerCase()
         draft.currentGuesses[activeGuessIndex] = activeGuess
       }
       return draft
