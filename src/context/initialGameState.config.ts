@@ -1,4 +1,4 @@
-import { GameState, GuessLetterStatuses, LetterStatuses } from "./initialGameState";
+import { GameState, GuessLetterStatuses, LetterStatuses } from "./InitialGameState";
 import { targetWords } from "./words.config";
 
 const NUMBER_OF_GUESSES = 6
@@ -8,7 +8,7 @@ const NUMBER_OF_GUESSES = 6
  * Creates a new game state
  * @returns Returns a new game state
  */
-export const getNewGameState = () => {
+export const getNewGameState = (isLightMode: boolean = true) => {
     const targetWord = targetWords[Math.round(Math.random() * (targetWords.length - 1))]
 
 
@@ -32,9 +32,9 @@ export const getNewGameState = () => {
         isShakeActiveRow: false,
         isDanceActiveRow: false,
         isFlipActiveRow: false,
-        gameStart: false,
+        gameStart: true,
         alertArray: [],
-        isLightMode: true
+        isLightMode: isLightMode
     }
 
     return newGameState

@@ -1,31 +1,33 @@
 import { getNewGameState } from "./InitialGameState.config";
-import { GameState } from "./initialGameState";
+import { GameState } from "./InitialGameState";
 import { GameDispatchAction } from './GameReducer'
 import { dictionary } from "./words.config";
 
 export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
+  if (action.type === 'NEWGAME') {
+    const { isLightMode } = draft
+    draft = getNewGameState(isLightMode)
+    return draft
+  }
+
   if (draft.gameStart) {
     draft.gameStart = false
   }
 
   switch (action.type) {
-    case 'NEWGAME':
-      draft = getNewGameState()
-      draft.gameStart = true
-      return draft
 
     case 'CHECKWINLOSE':
       draft.isFlipActiveRow = false
       if (draft.currentGuesses[draft.activeGuessIndex] === draft.targetWord) {
         draft.isGuessMode = false
         draft.isDanceActiveRow = true
-        draft.alertArray.push({ alertMessage: 'You Won!', showTime: 8000 })
+        draft.alertArray.push({ alertMessage: 'You Won!', showTime: 6000 })
 
         return draft
 
       } else if (draft.activeGuessIndex === draft.numberOfGuesses - 1) {
         draft.isGuessMode = false
-        draft.alertArray.push({ alertMessage: draft.targetWord.toUpperCase(), showTime: 8000 })
+        draft.alertArray.push({ alertMessage: draft.targetWord.toUpperCase(), showTime: 6000 })
 
         return draft
 

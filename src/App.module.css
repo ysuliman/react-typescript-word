@@ -17,6 +17,7 @@
   margin: 0;
   padding: 0 0 .5em 0;
   font-size: clamp(.5rem, 3.4vmin, 1.5rem);
+  transition: background-color .5s ease-in;
 }
 
 .App.light {

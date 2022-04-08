@@ -4,6 +4,7 @@ import styles from './Navbar.module.css'
 import classNames from 'classnames'
 import { GameStateContext } from '../../context/GameStateProvider'
 import NewGameButton from './new-game-button/NewGameButton.component'
+import Title from './title/Title.component'
 
 const Navbar = () => {
     const { isLightMode } = useContext(GameStateContext)
@@ -13,6 +14,7 @@ const Navbar = () => {
         <div className={classNames(styles.navbar,
             isLightMode && styles.light)}>
             <NewGameButton />
+            <Title />
             <LightModeToggle />
         </div>
     )

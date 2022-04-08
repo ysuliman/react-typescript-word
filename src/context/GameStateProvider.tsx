@@ -2,7 +2,7 @@ import React, { createContext } from 'react'
 import { useImmerReducer } from 'use-immer'
 import { GameDispatchAction } from './GameReducer'
 import { gameReducer } from './GameReducer.function'
-import { GameState } from "./initialGameState"
+import { GameState } from "./InitialGameState"
 import { getNewGameState } from './InitialGameState.config'
 
 const newGameState: GameState = getNewGameState()

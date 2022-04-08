@@ -1,17 +1,15 @@
 .react-toggle {
     touch-action: pan-x;
-
     display: inline-block;
     position: relative;
     cursor: pointer;
     background-color: transparent;
     border: 0;
     padding: 0;
-
+    margin: 0 1.3rem;
     user-select: none;
-    /* 
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-tap-highlight-color: transparent; */
+    transition: all .5s ease;
+
 }
 
 .react-toggle-screenreader-only {
@@ -42,6 +40,7 @@
 
 .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
     background-color: #000000;
+
 }
 
 .react-toggle--checked .react-toggle-track {
@@ -50,6 +49,7 @@
 
 .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
     background-color: hsl(214, 9%, 44%);
+
 }
 
 .react-toggle-track-check {
@@ -63,8 +63,6 @@
     line-height: 0;
     left: 8px;
     opacity: 0;
-    -webkit-transition: opacity 0.25s ease;
-    -moz-transition: opacity 0.25s ease;
     transition: opacity 0.25s ease;
 }
 
@@ -104,7 +102,7 @@
 
     box-sizing: border-box;
 
-    transition: all 0.25s ease;
+    transition: all 0.5s ease;
 }
 
 .react-toggle--checked .react-toggle-thumb {
@@ -115,6 +113,11 @@
 
 .react-toggle--focus .react-toggle-thumb {
     box-shadow: 0px 0px 2px 3px hsl(115, 54%, 57%);
+}
+
+.react-toggle-thumb:hover {
+    box-shadow: 0px 0px 2px 3px hsl(115, 54%, 57%);
+
 }
 
 .react-toggle:active:not(.react-toggle--disabled) .react-toggle-thumb {

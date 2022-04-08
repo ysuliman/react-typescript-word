@@ -15,6 +15,7 @@
     border-radius: .25em;
     cursor: pointer;
     user-select: none;
+    transition: all .5s ease-in;
 }
 
 .key.light {
@@ -37,6 +38,14 @@
 .key:hover,
 .key:focus {
     --lightness-offset: 10%;
+    box-shadow: 0px 0px 2px 3px hsl(115, 54%, 57%);
+    transition: none;
+    outline: none;
+}
+
+.key:active {
+    box-shadow: 0px 0px 5px 5px hsl(115, 54%, 57%);
+    font-size: 90%;
 }
 
 .key.wrong {

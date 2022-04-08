@@ -2,8 +2,9 @@
 import styles from './Tile.module.css'
 import classNames from 'classnames'
 import { TileProps } from './Tile'
-import { useContext, useEffect, useState, AnimationEvent } from 'react'
+import { useContext, useEffect, useState, AnimationEvent, TransitionEvent } from 'react'
 import { GameDispatchContext, GameStateContext } from '../../context/GameStateProvider'
+import { transform } from 'typescript'
 
 const Tile = ({ letterIndex, isActive, letter, letterStatus, letterToFlipIndex, setLetterToFlipInd, shake, dance, isLastLetter }: TileProps) => {
 
@@ -40,7 +41,9 @@ const Tile = ({ letterIndex, isActive, letter, letterStatus, letterToFlipIndex, 
         if (isActive) setIsPop(true)
     }, [isActive])
 
-    const handleTransitionEnd = () => {
+    const handleTransitionEnd = (e: TransitionEvent) => {
+        console.log(e.propertyName);
+        if (e.propertyName === 'color' || e.propertyName.includes('border')) return
         const nextLetterIndex = letterIndex + 1
         if (isLastLetter && !flip) {
             gameDispatch({ type: 'CHECKWINLOSE' })

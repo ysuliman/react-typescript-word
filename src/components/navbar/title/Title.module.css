@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap');
+
+.title {
+    font-family: 'Merriweather', serif;
+    color: white;
+    transition: color .5s ease-in;
+}
+
+.light {
+    color: black;
+}
