@@ -4,5 +4,5 @@
     align-content: center;
     flex-grow: 1;
     gap: .25em;
-    margin-bottom: 1em;
+    margin: 1em 0;
 }
