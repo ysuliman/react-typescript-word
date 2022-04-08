@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import styles from './Keys.module.css'
 import classNames from 'classnames'
 import { GameDispatchContext, GameStateContext } from '../../context/GameStateProvider'
-import { LetterStatus } from "../../context/initialGameState"
+import { LetterStatus } from "../../context/InitialGameState"
 
 interface LetterKeyProps {
     letter: string,

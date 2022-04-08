@@ -1,14 +1,17 @@
 import React, { createContext } from 'react'
 import { useImmerReducer } from 'use-immer'
+import { GameDispatchAction } from './GameReducer'
 import { gameReducer } from './GameReducer.function'
-import { initialGameState, newGameState } from "./initialGameState.config"
+import { GameState } from "./initialGameState"
+import { getNewGameState } from './InitialGameState.config'
 
-export const GameStateContext = createContext(initialGameState)
-export const GameDispatchContext = createContext((value: any) => { })
+const newGameState: GameState = getNewGameState()
+
+export const GameStateContext = createContext(newGameState)
+export const GameDispatchContext = createContext((action: GameDispatchAction) => { })
 
 const GameReducerProvider: React.FC = ({ children }) => {
-    const [gameState, gameDispatch] = useImmerReducer(gameReducer, initialGameState)
-
+    const [gameState, gameDispatch] = useImmerReducer(gameReducer, newGameState)
     return (
         <GameStateContext.Provider value={gameState}>
             <GameDispatchContext.Provider value={gameDispatch}>

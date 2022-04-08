@@ -1,27 +1,29 @@
-import { GuessLetterStatuses, LetterStatuses } from "./initialGameState";
+import { GameState, GuessLetterStatuses, LetterStatuses } from "./initialGameState";
 import { targetWords } from "./words.config";
 
+const NUMBER_OF_GUESSES = 6
 
-export const newGameState = () => {
-    const offsetFromDate = new Date(2022, 0, 6)
-    const msOffset = Date.now() - offsetFromDate.valueOf()
-    const minuteOffset = msOffset / 1000
-    const targetWord = targetWords[Math.floor(minuteOffset) % targetWords.length]
 
-    const numberOfGuesses = 6
+/**
+ * Creates a new game state
+ * @returns Returns a new game state
+ */
+export const getNewGameState = () => {
+    const targetWord = targetWords[Math.round(Math.random() * (targetWords.length - 1))]
+
 
     const guessLetterStatuses = [[]] as GuessLetterStatuses
 
-    for (let i = 0; i < numberOfGuesses; i++) {
+    for (let i = 0; i < NUMBER_OF_GUESSES; i++) {
         guessLetterStatuses[i] = []
         for (let j = 0; j < targetWord.length; j++) {
             guessLetterStatuses[i][j] = 'none'
         }
     }
 
-    const newGameState = {
+    const newGameState: GameState = {
         targetWord,
-        numberOfGuesses,
+        numberOfGuesses: NUMBER_OF_GUESSES,
         activeGuessIndex: 0,
         currentGuesses: [''],
         letterStatuses: {} as LetterStatuses,
@@ -31,13 +33,9 @@ export const newGameState = () => {
         isDanceActiveRow: false,
         isFlipActiveRow: false,
         gameStart: false,
-        alertArray: [] as { alertMessage: string, showTime: number }[],
+        alertArray: [],
         isLightMode: true
     }
 
     return newGameState
 }
-
-export const initialGameState = newGameState()
-
-export type GameState = typeof initialGameState

@@ -1,4 +1,4 @@
-interface INonLetterDispatchAction { type: 'SUBMIT' | 'DELETE' | 'CHECKWINLOSE' | 'TOGGLELIGHTMODE' }
+interface INonLetterDispatchAction { type: 'SUBMIT' | 'DELETE' | 'CHECKWINLOSE' | 'TOGGLELIGHTMODE' | 'NEWGAME' }
 interface ILetterDispatchAction { type: 'LETTERPRESS'; letter: string; }
 interface IRemoveAlertDispatchAction { type: 'REMOVEALERT' }
 interface IShakeDispatchAction { type: 'ENDSHAKE' }

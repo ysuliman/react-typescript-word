@@ -1,4 +1,4 @@
-import { LetterStatus } from "../../context/initialGameState"
+import { LetterStatus } from "../../context/InitialGameState"
 
 export interface TileProps {
     letter: string,

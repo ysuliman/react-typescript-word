@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { TileRowProps } from './TileRow'
 import Tile from '../tile/Tile.component'
 import { GameStateContext } from '../../context/GameStateProvider'
-import styles from './TileRow.module.css'
 
 const TileRow = (props: TileRowProps) => {
     const { activeGuessIndex, rowIndex, currentGuess, wordLength, isShakeRow, isDanceRow, isFlipRow } = { ...props }

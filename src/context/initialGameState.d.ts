@@ -5,3 +5,23 @@ export type LetterStatuses = {
 };
 
 export type GuessLetterStatuses = [LetterStatus[]];
+export interface AlertMessage {
+    alertMessage: string,
+    showTime?: number
+}
+export type GameState = {
+    targetWord: string,
+    numberOfGuesses: number,
+    activeGuessIndex: number,
+    currentGuesses: string[],
+    letterStatuses: LetterStatuses,
+    guessLetterStatuses: GuessLetterStatuses,
+    isGuessMode: boolean,
+    isShakeActiveRow: boolean,
+    isDanceActiveRow: boolean,
+    isFlipActiveRow: boolean,
+    gameStart: boolean,
+    alertArray: AlertMessage[],
+    isLightMode: boolean
+}
+

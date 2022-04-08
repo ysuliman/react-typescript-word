@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { GameDispatchContext, GameStateContext } from '../../context/GameStateProvider'
+import { GameDispatchContext } from '../../../context/GameStateProvider'
 
 import Toggle from 'react-toggle'
 import './LightModeToggle.css'
@@ -12,7 +12,6 @@ const LightModeToggle = () => {
     const toggleLightMode = () => {
         gameDispatch({ type: 'TOGGLELIGHTMODE' })
     }
-
 
     return (
         <>

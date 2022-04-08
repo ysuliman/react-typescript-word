@@ -6,8 +6,9 @@ import styles from './Alert.module.css'
 const AlertContainer = () => {
     const { alertArray } = useContext(GameStateContext)
 
-    const alerts = alertArray.map(({ alertMessage, showTime }, index) => {
-        return <Alert key={index} alertMessage={alertMessage} showTime={showTime} />
+    const alerts = alertArray.map((AlertMessage, index) => {
+        const { alertMessage, showTime } = AlertMessage
+        return <Alert key={index} alertMessage={alertMessage} showTime={showTime || 500} />
     })
 
     return (

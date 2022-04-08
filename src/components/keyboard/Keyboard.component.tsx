@@ -4,7 +4,7 @@ import LetterKey from '../keys/LetterKey.component'
 import EnterKey from '../keys/EnterKey'
 import DeleteKey from '../keys/DeleteKey'
 import { GameStateContext } from '../../context/GameStateProvider'
-import { LetterStatuses } from "../../context/initialGameState"
+import { LetterStatuses } from "../../context/InitialGameState"
 
 const Keyboard = () => {
     const keyboardLetters1 = 'QWERTYUIOP'

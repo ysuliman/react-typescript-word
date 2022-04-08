@@ -13,7 +13,14 @@ const Tile = ({ letterIndex, isActive, letter, letterStatus, letterToFlipIndex, 
     const [letterClass, setLetterClass] = useState('')
 
     const gameDispatch = useContext(GameDispatchContext)
-    const { isLightMode } = useContext(GameStateContext)
+    const { isLightMode, gameStart } = useContext(GameStateContext)
+
+    useEffect(() => {
+        if (gameStart) {
+            setLetterClass('')
+            setDanceClass(false)
+        }
+    }, [gameStart])
 
     useEffect(() => {
         if (letterStatus && letterIndex === letterToFlipIndex) {
