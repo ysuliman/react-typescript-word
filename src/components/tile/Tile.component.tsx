@@ -42,8 +42,8 @@ const Tile = ({ letterIndex, isActive, letter, letterStatus, letterToFlipIndex, 
     }, [isActive])
 
     const handleTransitionEnd = (e: TransitionEvent) => {
-        console.log(e.propertyName);
         if (e.propertyName === 'color' || e.propertyName.includes('border')) return
+
         const nextLetterIndex = letterIndex + 1
         if (isLastLetter && !flip) {
             gameDispatch({ type: 'CHECKWINLOSE' })
