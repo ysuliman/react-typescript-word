@@ -14,6 +14,20 @@ const App = () => {
 
   const { isLightMode } = useContext(GameStateContext)
 
+  // Workaround for notch on IOS
+  useEffect(() => {
+    document.body.style.transition = 'background-color .5s ease-in'
+  }, [])
+
+  useEffect(() => {
+    if (!isLightMode) {
+      document.body.style.backgroundColor = '#111112'
+    } else {
+      document.body.style.backgroundColor = '#fff'
+    }
+  }, [isLightMode])
+
+
   const handleKeyPress = useCallback((ev: KeyboardEvent): void => {
     if (ev.key === 'Enter') return gameDispatch({ type: 'SUBMIT' })
     if (ev.key === "Backspace" || ev.key === "Delete") return gameDispatch({ type: 'DELETE' })
