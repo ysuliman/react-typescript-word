@@ -4,7 +4,6 @@
     border-radius: 1rem;
     border: none;
     padding: .3rem .9rem;
-    background-color: hsl(60, 9%, 64%);
     transition: all 0.2s ease;
     color: whitesmoke;
     background-color: hsl(210, 1%, 51%);
@@ -17,11 +16,18 @@
     color: black;
 }
 
+.new-game:focus {
+    background-color: hsl(210, 1%, 41%);
+    transition: all 0.2s ease;
+    box-shadow: 0px 0px 1px 2px hsl(115, 54%, 57%);
+    outline: none;
+}
+
 .new-game.light:focus {
     background-color: hsl(214, 9%, 64%);
     color: rgb(242, 242, 242);
     transition: all 0.2s ease;
-    box-shadow: 0px 0px 1px 1px hsl(115, 54%, 57%);
+    box-shadow: 0px 0px 1px 2px hsl(115, 54%, 57%);
     outline: none;
 }
 
