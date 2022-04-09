@@ -13,11 +13,14 @@
   flex-direction: column;
   justify-content: flex-start;
   min-width: 100vw;
-  min-height: 100vh;
-  max-height: 100vh;
+  height: 100vh;
   margin: 0;
   font-size: clamp(.5rem, 3.4vmin, 1.5rem);
   transition: background-color .5s ease-in;
+}
+
+.App>* {
+  flex: 1 1 auto;
 }
 
 .App.light {

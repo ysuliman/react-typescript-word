@@ -1,9 +1,27 @@
 .guess-grid {
     display: grid;
     justify-content: center;
-    flex-grow: 1;
-    flex-shrink: 1;
-
+    align-content: center;
     gap: .25em;
-    margin: 1em 0;
+    margin-top: 4vh;
+    margin-bottom: 3vh;
+    flex-grow: .3;
+    grid-template-columns: repeat(5, clamp(3vw, 7vh, 7rem));
+    grid-template-rows: repeat(6, clamp(3vw, 7vh, 7rem));
+}
+
+/* Tablets */
+@media only screen and (min-width: 768px) and (max-width: 1000px) and (min-height: 819px) {
+    .guess-grid {
+        grid-template-columns: repeat(5, clamp(3vw, 8vh, 7.5rem));
+        grid-template-rows: repeat(6, clamp(3vw, 8vh, 7.5rem));
+    }
+}
+
+/* Desktop */
+@media only screen and (min-width: 1001px) and (min-height: 819px) {
+    .guess-grid {
+        grid-template-columns: repeat(5, clamp(3vw, 9vh, 8.5rem));
+        grid-template-rows: repeat(6, clamp(3vw, 9vh, 8.5rem));
+    }
 }

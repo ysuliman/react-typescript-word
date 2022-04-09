@@ -35,10 +35,6 @@ const GuessGrid = () => {
     return (
         <div
             className={styles['guess-grid']}
-            style={{
-                gridTemplateColumns: `repeat(${targetWord.length}, 4em`,
-                gridTemplateRows: `repeat(${numberOfGuesses}, 4em)`
-            }}
         >
             {tileRows}
         </div>
@@ -46,3 +42,5 @@ const GuessGrid = () => {
 }
 
 export default GuessGrid
+
+// clamp(3rem, 3vh, 4rem)) clamp(3vw, 7vh, 7rem)

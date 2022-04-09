@@ -1,5 +1,5 @@
 .tile {
-    font-size: 2em;
+    font-size: clamp(1.7em, 5vh, 2.2em);
     color: white;
     border: .07em solid hsl(240, 2%, 23%);
     text-transform: uppercase;

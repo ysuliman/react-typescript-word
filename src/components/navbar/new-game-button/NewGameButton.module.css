@@ -13,26 +13,28 @@
 }
 
 .new-game.light {
-    background-color: #d3d6da;
+    background-color: hsl(214, 9%, 84%);
     color: black;
 }
 
+.new-game.light:focus {
+    background-color: hsl(214, 9%, 64%);
+    color: rgb(242, 242, 242);
+    transition: all 0.2s ease;
+    box-shadow: 0px 0px 1px 1px hsl(115, 54%, 57%);
+    outline: none;
+}
+
 .new-game:hover,
-.new-game:focus {
+.new-game.light:hover {
     background-color: hsl(214, 7%, 28%);
+    transition: all 0.2s ease;
     color: rgb(242, 242, 242);
     box-shadow: 0px 0px 2px 3px hsl(115, 54%, 57%);
     outline: none;
-    transition: none;
 }
 
 .new-game:active {
     box-shadow: 0px 0px 5px 5px hsl(115, 54%, 57%);
     font-size: small;
-}
-
-.new-game.light:hover,
-.new-game.light:focus {
-    background-color: hsl(214, 9%, 44%);
-    color: rgb(242, 242, 242);
 }
