@@ -80,29 +80,67 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
       return draft
 
     case 'SUBMIT':
+      // Handle user did not submit enough letters
       if (activeGuessLength !== targetWordLength) {
         draft.alerts.push({ alertMessage: 'Not enough letters', showTime: 500 })
         draft.isShakeActiveRow = true
         return draft
 
+        // Handle guess is not a word in dictionary
       } else if (!dictionary.includes(activeGuess)) {
         draft.alerts.push({ alertMessage: 'Not in word list', showTime: 800 })
         draft.isShakeActiveRow = true
         return draft
       } else {
+
+        // Analyze letters of user guess and set active guess statuses
         for (let i = 0; i < targetWordLength; i++) {
           const guessLetter = activeGuess[i]
           const targetLetter = targetWord[i]
+
+          // Handle correct letter
           if (guessLetter === targetLetter) {
             draft.guessLetterStatuses[activeGuessIndex][i] = 'correct'
             draft.letterStatuses[guessLetter] = 'correct'
+
+            // Handle letter in wrong location
           } else if (targetWord.includes(guessLetter)) {
             draft.guessLetterStatuses[activeGuessIndex][i] = 'wrong-location'
             draft.letterStatuses[guessLetter] = 'wrong-location'
+
+            // Handle incorrect letter
           } else {
             draft.guessLetterStatuses[activeGuessIndex][i] = 'wrong-letter'
             draft.letterStatuses[guessLetter] = 'wrong-letter'
           }
+        }
+
+        // Handle edge case of wrong location when correct letter found
+        for (let i = 0; i < targetWordLength; i++) {
+          const guessLetter = activeGuess[i]
+          const currentGuessLetterStatuses = draft.guessLetterStatuses[activeGuessIndex]
+          const guessLetterStatus = draft.guessLetterStatuses[activeGuessIndex][i]
+
+          let isLetterFoundCorrect = false
+          let anotherLetterNotFound = false
+
+          if (guessLetterStatus === 'wrong-location') {
+            // Determine if letter was also found to be correct
+            for (let i = 0; i < targetWordLength; i++) {
+              isLetterFoundCorrect = (activeGuess[i] === guessLetter) && (currentGuessLetterStatuses[i] === 'correct')
+              if (isLetterFoundCorrect) break
+            }
+
+            // Find out if another of the same letter exists the user has not found
+            for (let i = 0; i < targetWordLength; i++) {
+              anotherLetterNotFound = (targetWord[i] === guessLetter) && !(currentGuessLetterStatuses[i] === 'correct')
+              if (anotherLetterNotFound) break
+            }
+
+            // Replace wrong-location status if same letter already found correct and no other same letter existed unfound
+            if (isLetterFoundCorrect && !anotherLetterNotFound) draft.guessLetterStatuses[activeGuessIndex][i] = 'wrong-letter'
+          }
+
         }
 
         draft.isGuessMode = false
