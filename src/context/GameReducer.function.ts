@@ -105,17 +105,17 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
           // Handle correct letter
           if (guessLetter === targetLetter) {
             draft.guessLetterStatuses[activeGuessIndex][i] = 'correct'
-            draft.letterStatuses[guessLetter] = 'correct'
+            draft.keyboardLetterStatuses[guessLetter] = 'correct'
 
             // Handle letter in wrong location
           } else if (targetWord.includes(guessLetter)) {
             draft.guessLetterStatuses[activeGuessIndex][i] = 'wrong-location'
-            draft.letterStatuses[guessLetter] = 'wrong-location'
+            draft.keyboardLetterStatuses[guessLetter] = 'wrong-location'
 
             // Handle incorrect letter
           } else {
             draft.guessLetterStatuses[activeGuessIndex][i] = 'wrong-letter'
-            draft.letterStatuses[guessLetter] = 'wrong-letter'
+            draft.keyboardLetterStatuses[guessLetter] = 'wrong-letter'
           }
         }
 

@@ -15,7 +15,7 @@ export type GameState = {
     /** The current position in the active row of the guess grid */
     activeGuessIndex: number,
     currentGuesses: string[],
-    letterStatuses: LetterStatuses,
+    keyboardLetterStatuses: LetterStatuses,
     guessLetterStatuses: GuessLetterStatuses,
     isGuessMode: boolean,
     isShakeActiveRow: boolean,

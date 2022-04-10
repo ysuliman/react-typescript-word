@@ -6,33 +6,35 @@ import DeleteKey from '../keys/DeleteKey'
 import { GameStateContext } from '../../context/GameStateProvider'
 import { LetterStatuses } from "../../context/InitialGameState"
 
+
+const KEYBOARD_LETTERS_ROW_1 = 'QWERTYUIOP'
+const KEYBOARD_LETTERS_ROW_2 = 'ASDFGHJKL'
+const KEYBOARD_LETTERS_ROW_3 = 'ZXCVBNM'
+
 const Keyboard = () => {
-    const keyboardLetters1 = 'QWERTYUIOP'
-    const keyboardLetters2 = 'ASDFGHJKL'
-    const keyboardLetters3 = 'ZXCVBNM'
 
-    const { letterStatuses, isFlipActiveRow } = useContext(GameStateContext)
+    const { keyboardLetterStatuses, isFlipActiveRow } = useContext(GameStateContext)
 
-    const [keyboardLetterStatuses, setKeyboardLetterStatuses] = useState({} as LetterStatuses)
+    const [keyboardLetterStatusesState, setKeyboardLetterStatusesState] = useState({} as LetterStatuses)
 
     useEffect(() => {
-        if (!isFlipActiveRow) { setKeyboardLetterStatuses(letterStatuses) }
-    }, [isFlipActiveRow, letterStatuses])
+        if (!isFlipActiveRow) { setKeyboardLetterStatusesState(keyboardLetterStatuses) }
+    }, [isFlipActiveRow, keyboardLetterStatuses])
 
 
     const makeRow = (letters: string) => letters.split('').map((letter, index) => {
 
-        return <LetterKey letter={letter} key={index} status={keyboardLetterStatuses[letter.toLowerCase()] || 'none'} />
+        return <LetterKey letter={letter} key={index} status={keyboardLetterStatusesState[letter.toLowerCase()] || 'none'} />
     })
 
     return (
         <div className={styles.keyboard}>
-            {makeRow(keyboardLetters1)}
+            {makeRow(KEYBOARD_LETTERS_ROW_1)}
             <div></div>
-            {makeRow(keyboardLetters2)}
+            {makeRow(KEYBOARD_LETTERS_ROW_2)}
             <div></div>
             <EnterKey />
-            {makeRow(keyboardLetters3)}
+            {makeRow(KEYBOARD_LETTERS_ROW_3)}
             <DeleteKey />
         </div>
     )

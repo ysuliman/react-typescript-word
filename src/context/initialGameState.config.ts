@@ -26,7 +26,7 @@ export const getNewGameState = (isLightMode: boolean = true) => {
         numberOfGuesses: NUMBER_OF_GUESSES,
         activeGuessIndex: 0,
         currentGuesses: [''],
-        letterStatuses: {} as LetterStatuses,
+        keyboardLetterStatuses: {} as LetterStatuses,
         guessLetterStatuses,
         isGuessMode: true,
         isShakeActiveRow: false,
