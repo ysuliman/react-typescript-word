@@ -135,7 +135,7 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
               if (isLetterFoundCorrect) break
             }
 
-            // Find out if another of the same letter exists the user has not found
+            // Determine if another of the same letter exists the user has not found
             for (let i = 0; i < targetWordLength; i++) {
               anotherLetterNotFound = (targetWord[i] === guessLetter) && !(currentGuessLetterStatuses[i] === 'correct')
               if (anotherLetterNotFound) break
