@@ -18,6 +18,7 @@ const Tile = ({ letterIndex, isActive, letter, letterStatus, letterToFlipIndex, 
         if (gameStart) {
             setLetterClass('')
             setIsDance(false)
+            setIsFlip(false)
         }
     }, [gameStart])
 

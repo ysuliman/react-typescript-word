@@ -1,7 +1,14 @@
-interface INonLetterDispatchAction { type: 'SUBMIT' | 'DELETE' | 'CHECKWINLOSE' | 'TOGGLELIGHTMODE' | 'NEWGAME' }
-interface ILetterDispatchAction { type: 'LETTERPRESS'; letter: string; }
-interface IRemoveAlertDispatchAction { type: 'ALERTCOMPLETE' }
-interface IShakeDispatchAction { type: 'SHAKECOMPLETE' }
+interface INonLetterDispatchAction {
+    type:
+    'SUBMIT'
+    | 'DELETE'
+    | 'CHECKWINLOSE'
+    | 'TOGGLELIGHTMODE'
+    | 'NEWGAME'
+    | 'ALERTCOMPLETE'
+    | 'SHAKECOMPLETE'
+}
 
+interface ILetterDispatchAction { type: 'LETTERPRESS'; letter: string; }
 
 export type GameDispatchAction = INonLetterDispatchAction | ILetterDispatchAction | IShakeDispatchAction | IRemoveAlertDispatchAction

@@ -17,24 +17,28 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
   switch (action.type) {
 
     case 'CHECKWINLOSE':
+
       draft.isFlipActiveRow = false
+      // Check if user won
       if (draft.currentGuesses[draft.activeGuessIndex] === draft.targetWord) {
         draft.isGuessMode = false
         draft.isDanceActiveRow = true
-        draft.alerts.push({ alertMessage: 'You Won!', showTime: 6000 })
+        draft.alerts.push({ alertMessage: 'You Won!', showTime: 5000 })
 
         return draft
 
+        // Check if user lost
       } else if (draft.activeGuessIndex === draft.numberOfGuesses - 1) {
         draft.isGuessMode = false
-        draft.alerts.push({ alertMessage: draft.targetWord.toUpperCase(), showTime: 6000 })
+        draft.alerts.push({ alertMessage: draft.targetWord.toUpperCase(), showTime: 5000 })
 
         return draft
 
+        // Proceed user to the next guess, negating edge case of user clicking new game mid-animation before the dispatch of CHECKWINLOSE
       } else {
-        draft.isGuessMode = true
-        draft.activeGuessIndex += 1
+        if (draft.currentGuesses[draft.activeGuessIndex].length === draft.targetWord.length) draft.activeGuessIndex += 1
         draft.currentGuesses[draft.activeGuessIndex] = ''
+        draft.isGuessMode = true
         return draft
       }
 

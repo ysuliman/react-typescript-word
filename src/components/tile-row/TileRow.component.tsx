@@ -13,13 +13,13 @@ const TileRow = ({
     isDanceRow,
     isFlipRow
 }: TileRowProps) => {
-    const { guessLetterStatuses } = useContext(GameStateContext)
+    const { guessLetterStatuses, gameStart } = useContext(GameStateContext)
 
     const [letterToFlipIndex, setLetterToFlipInd] = useState(-1)
 
-    useEffect(() => {
-        if (isFlipRow) setLetterToFlipInd(0)
-    }, [isFlipRow])
+    useEffect(() => { if (isFlipRow) setLetterToFlipInd(0) }, [isFlipRow])
+    useEffect(() => { if (gameStart) setLetterToFlipInd(-10) }, [gameStart])
+
 
     const tiles = [...Array(wordLength)].map((_, index) => {
         const letter = currentGuess[index] || ''
