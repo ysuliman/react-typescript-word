@@ -6,12 +6,7 @@ import classNames from 'classnames'
 const Title = () => {
     const { isLightMode } = useContext(GameStateContext)
     return (
-        <h1
-            className={classNames(
-                styles.title,
-                isLightMode && styles.light
-            )}>
-            Word</h1>
+        <h1 className={classNames(styles.title, isLightMode && styles.light)}>Word</h1>
     )
 }
 

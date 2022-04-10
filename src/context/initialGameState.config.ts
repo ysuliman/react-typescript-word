@@ -10,10 +10,9 @@ const NUMBER_OF_GUESSES = 6
  */
 export const getNewGameState = (isLightMode: boolean = true) => {
     const targetWord = targetWords[Math.round(Math.random() * (targetWords.length - 1))]
-
-
     const guessLetterStatuses = [[]] as GuessLetterStatuses
 
+    // Initialize the letter statuses of guess grid
     for (let i = 0; i < NUMBER_OF_GUESSES; i++) {
         guessLetterStatuses[i] = []
         for (let j = 0; j < targetWord.length; j++) {
@@ -21,6 +20,7 @@ export const getNewGameState = (isLightMode: boolean = true) => {
         }
     }
 
+    // Initialize the game state for the context provider
     const newGameState: GameState = {
         targetWord,
         numberOfGuesses: NUMBER_OF_GUESSES,
@@ -33,7 +33,7 @@ export const getNewGameState = (isLightMode: boolean = true) => {
         isDanceActiveRow: false,
         isFlipActiveRow: false,
         gameStart: true,
-        alertArray: [],
+        alerts: [],
         isLightMode: isLightMode
     }
 

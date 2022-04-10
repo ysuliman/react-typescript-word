@@ -11,7 +11,7 @@
 }
 
 /* Tablets */
-@media only screen and (min-width: 768px) and (max-width: 1000px) and (min-height: 819px) {
+@media only screen and (min-width: 768px) and (max-width: 1000px) and (min-height: 820px) {
     .guess-grid {
         grid-template-columns: repeat(5, clamp(3vw, 8vh, 7.5rem));
         grid-template-rows: repeat(6, clamp(3vw, 8vh, 7.5rem));
@@ -19,7 +19,7 @@
 }
 
 /* Desktop */
-@media only screen and (min-width: 1001px) and (min-height: 819px) {
+@media only screen and (min-width: 1001px) and (min-height: 820px) {
     .guess-grid {
         grid-template-columns: repeat(5, clamp(3vw, 9vh, 8.5rem));
         grid-template-rows: repeat(6, clamp(3vw, 9vh, 8.5rem));

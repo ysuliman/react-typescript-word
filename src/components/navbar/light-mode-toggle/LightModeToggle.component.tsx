@@ -14,17 +14,15 @@ const LightModeToggle = () => {
     }
 
     return (
-        <>
-            <Toggle
-                defaultChecked={true}
-                icons={{
-                    checked: <ToggleIcon icon={'☀'} fill={'#ffd000'} left={-1} size={17} />,
-                    unchecked: <ToggleIcon icon={'🌙'} left={-3} size={12} />,
-                }}
-                onChange={toggleLightMode}
+        <Toggle
+            defaultChecked={true}
+            icons={{
+                checked: <ToggleIcon icon={'☀'} fill={'#ffd000'} left={-1} size={17} />,
+                unchecked: <ToggleIcon icon={'🌙'} left={-3} size={12} />,
+            }}
+            onChange={toggleLightMode}
 
-            />
-        </>
+        />
     )
 }
 

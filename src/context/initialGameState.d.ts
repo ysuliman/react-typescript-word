@@ -12,6 +12,7 @@ export interface AlertMessage {
 export type GameState = {
     targetWord: string,
     numberOfGuesses: number,
+    /** The current position in the active row of the guess grid */
     activeGuessIndex: number,
     currentGuesses: string[],
     letterStatuses: LetterStatuses,
@@ -21,7 +22,7 @@ export type GameState = {
     isDanceActiveRow: boolean,
     isFlipActiveRow: boolean,
     gameStart: boolean,
-    alertArray: AlertMessage[],
+    alerts: AlertMessage[],
     isLightMode: boolean
 }
 

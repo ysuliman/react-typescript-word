@@ -21,13 +21,13 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
       if (draft.currentGuesses[draft.activeGuessIndex] === draft.targetWord) {
         draft.isGuessMode = false
         draft.isDanceActiveRow = true
-        draft.alertArray.push({ alertMessage: 'You Won!', showTime: 6000 })
+        draft.alerts.push({ alertMessage: 'You Won!', showTime: 6000 })
 
         return draft
 
       } else if (draft.activeGuessIndex === draft.numberOfGuesses - 1) {
         draft.isGuessMode = false
-        draft.alertArray.push({ alertMessage: draft.targetWord.toUpperCase(), showTime: 6000 })
+        draft.alerts.push({ alertMessage: draft.targetWord.toUpperCase(), showTime: 6000 })
 
         return draft
 
@@ -38,12 +38,12 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
         return draft
       }
 
-    case 'ENDSHAKE':
+    case 'SHAKECOMPLETE':
       draft.isShakeActiveRow = false
       return draft
 
-    case 'REMOVEALERT':
-      draft.alertArray.shift()
+    case 'ALERTCOMPLETE':
+      draft.alerts.shift()
       return draft
 
     case 'TOGGLELIGHTMODE':
@@ -81,12 +81,12 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
 
     case 'SUBMIT':
       if (activeGuessLength !== targetWordLength) {
-        draft.alertArray.push({ alertMessage: 'Not enough letters', showTime: 500 })
+        draft.alerts.push({ alertMessage: 'Not enough letters', showTime: 500 })
         draft.isShakeActiveRow = true
         return draft
 
       } else if (!dictionary.includes(activeGuess)) {
-        draft.alertArray.push({ alertMessage: 'Not in word list', showTime: 800 })
+        draft.alerts.push({ alertMessage: 'Not in word list', showTime: 800 })
         draft.isShakeActiveRow = true
         return draft
       } else {

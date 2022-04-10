@@ -4,17 +4,21 @@ import { TileRowProps } from './TileRow'
 import Tile from '../tile/Tile.component'
 import { GameStateContext } from '../../context/GameStateProvider'
 
-const TileRow = (props: TileRowProps) => {
-    const { activeGuessIndex, rowIndex, currentGuess, wordLength, isShakeRow, isDanceRow, isFlipRow } = { ...props }
-
+const TileRow = ({
+    activeGuessIndex,
+    rowIndex,
+    currentGuess,
+    wordLength,
+    isShakeRow,
+    isDanceRow,
+    isFlipRow
+}: TileRowProps) => {
     const { guessLetterStatuses } = useContext(GameStateContext)
 
     const [letterToFlipIndex, setLetterToFlipInd] = useState(-1)
 
     useEffect(() => {
-        if (isFlipRow) {
-            setLetterToFlipInd(0)
-        }
+        if (isFlipRow) setLetterToFlipInd(0)
     }, [isFlipRow])
 
     const tiles = [...Array(wordLength)].map((_, index) => {
@@ -22,7 +26,6 @@ const TileRow = (props: TileRowProps) => {
         const isActive = !!letter && activeGuessIndex === rowIndex
 
         const letterStatus = guessLetterStatuses[rowIndex][index]
-
 
         return <Tile
             key={index}

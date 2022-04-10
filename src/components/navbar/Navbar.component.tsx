@@ -9,14 +9,12 @@ import Title from './title/Title.component'
 const Navbar = () => {
     const { isLightMode } = useContext(GameStateContext)
 
-
     return (
-        <div className={classNames(styles.navbar,
-            isLightMode && styles.light)}>
+        <nav className={classNames(styles.navbar, isLightMode && styles.light)}>
             <NewGameButton />
             <Title />
             <LightModeToggle />
-        </div>
+        </nav>
     )
 }
 
