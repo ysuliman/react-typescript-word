@@ -8,6 +8,7 @@ import Navbar from './components/navbar/Navbar.component';
 import { GameDispatchContext, GameStateContext } from './context/GameStateProvider';
 
 import styles from './App.module.css'
+import Footer from './components/footer/Footer.component';
 
 const App = () => {
   const gameDispatch = useContext(GameDispatchContext)
@@ -49,6 +50,7 @@ const App = () => {
       <AlertContainer />
       <GuessGrid />
       <Keyboard />
+      <Footer />
     </div>
   );
 }

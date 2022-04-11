@@ -121,5 +121,5 @@
 }
 
 .react-toggle:active:not(.react-toggle--disabled) .react-toggle-thumb {
-    box-shadow: 0px 0px 5px 5px hsl(115, 54%, 57%);
+    text-shadow: 0px 0px 5px 5px hsl(115, 54%, 57%);
 }

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&display=swap');
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 0;
+    margin-bottom: 4px;
+    padding: 0;
+    flex-grow: 0;
+}
+
+.link {
+    text-decoration: none;
+    font-family: 'Fira Code', monospace;
+    font-size: large;
+    transition: color 0.5s ease-in-out, text-shadow 0.2s ease-in-out;
+    color: white;
+}
+
+.link.light {
+    color: black;
+}
+
+.link:hover {
+    text-shadow: hsl(115, 100%, 65%) 0px 0px 4px;
+}
