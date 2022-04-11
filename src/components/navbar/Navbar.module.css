@@ -1,5 +1,5 @@
 .navbar {
-    flex: 0 1 auto;
+    flex: 0 0 auto;
     background-color: inherit;
     border-bottom: .08rem solid hsl(240, 2%, 23%);
     padding: .6rem;

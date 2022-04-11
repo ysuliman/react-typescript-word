@@ -25,10 +25,6 @@
   transition: background-color .5s ease-in;
 }
 
-.App>* {
-  flex: 1 1 auto;
-}
-
 .App.light {
   background-color: #fff;
 }

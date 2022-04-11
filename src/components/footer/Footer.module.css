@@ -13,7 +13,7 @@
 .link {
     text-decoration: none;
     font-family: 'Fira Code', monospace;
-    font-size: large;
+    font-size: inherit;
     transition: color 0.5s ease-in-out, text-shadow 0.2s ease-in-out;
     color: white;
 }
