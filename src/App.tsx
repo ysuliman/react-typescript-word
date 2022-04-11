@@ -20,8 +20,8 @@ const App = () => {
   }, [])
   useEffect(() => {
     document.body.style.backgroundColor = isLightMode
-      ? '#111112'
-      : '#fff';
+      ? '#fff'
+      : '#111112';
   }, [isLightMode])
 
   const handleKeyPress = useCallback((ev: KeyboardEvent) => {
