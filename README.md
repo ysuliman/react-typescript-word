@@ -1,3 +1,3 @@
 # Word
 
-This project was bootstrapped with the Typescript template of Create React App to learn and share with others.
+A recreation of a popular word game with React and Typescript for practice.
