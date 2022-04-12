@@ -21,7 +21,7 @@ const LightModeToggle = () => {
                 unchecked: <ToggleIcon icon={'🌙'} left={-3} size={12} />,
             }}
             onChange={toggleLightMode}
-
+            aria-label='Light Mode'
         />
     )
 }
