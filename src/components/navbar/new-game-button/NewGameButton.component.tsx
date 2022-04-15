@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import styles from './NewGameButton.module.css'
 import classNames from 'classnames'
 import { GameDispatchContext, GameStateContext } from '../../../context/GameStateProvider'

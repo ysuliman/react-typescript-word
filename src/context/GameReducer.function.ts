@@ -1,4 +1,4 @@
-import { getNewGameState } from "./InitialGameState.config";
+import { getNewGameState } from "./InitialGameStateConfig";
 import { GameState } from "./InitialGameState";
 import { GameDispatchAction } from './GameReducer'
 import { dictionary } from "./words.config";

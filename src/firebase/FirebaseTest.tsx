@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from 'firebase/auth';
-import { collection, DocumentData, getDocs, QuerySnapshot } from 'firebase/firestore';
-import { useCollection, useDocumentData } from "react-firebase-hooks/firestore";
-import React, { useEffect, useMemo, useState } from 'react'
+import { collection } from 'firebase/firestore';
+import { useCollection } from "react-firebase-hooks/firestore";
+import { useEffect, useMemo } from 'react'
 import { auth, db } from './FirebaseConfig';
 
 const FirebaseTest = () => {
