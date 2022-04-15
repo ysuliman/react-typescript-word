@@ -3,7 +3,6 @@ import { targetWords } from "./words.config";
 
 const NUMBER_OF_GUESSES = 6
 
-
 /**
  * Creates a new game state
  * @returns Returns a new game state
