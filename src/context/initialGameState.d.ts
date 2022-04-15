@@ -5,6 +5,7 @@ export type LetterStatuses = {
 };
 
 export type GuessLetterStatuses = [LetterStatus[]];
+
 export interface AlertMessage {
     alertMessage: string,
     showTime?: number
