@@ -2,7 +2,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { collection, DocumentData, getDocs, QuerySnapshot } from 'firebase/firestore';
 import { useCollection, useDocumentData } from "react-firebase-hooks/firestore";
 import React, { useEffect, useMemo, useState } from 'react'
-import { auth, db } from './word-yousef-firebase';
+import { auth, db } from './FirebaseConfig';
 
 const FirebaseTest = () => {
     // Detect auth state
