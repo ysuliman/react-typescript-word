@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { GameStateContext } from '../../context/GameStateProvider'
+import { AlertMessage } from '../../context/InitialGameState'
 import Alert from './Alert.component'
 import styles from './Alert.module.css'
 
@@ -10,7 +11,7 @@ const AlertContainer = () => {
     return (
         <div className={styles['alert-container']}>
 
-            {alerts.map((AlertMessage, index) => {
+            {alerts.map((AlertMessage: AlertMessage, index) => {
                 const { alertMessage, showTime } = AlertMessage
                 return <Alert
                     key={index}
