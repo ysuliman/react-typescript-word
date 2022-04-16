@@ -1,23 +1,12 @@
-import { onAuthStateChanged } from 'firebase/auth';
 import { collection } from 'firebase/firestore';
 import { useCollection } from "react-firebase-hooks/firestore";
 import { useEffect, useMemo } from 'react'
-import { auth, db } from './FirebaseConfig';
+import { db } from './FirebaseConfig';
+import SignInModal from './SignInModal/SignInModal';
 
 const FirebaseTest = () => {
-    // Detect auth state
-    useEffect(() => {
-        onAuthStateChanged(auth, user => {
-            if (user) {
-                console.log(auth, user)
-            } else {
-                console.log(auth)
-            }
-        })
-    }, [])
-
+    // Firestore
     const someColRef = useMemo(() => collection(db, 'someCollection'), [])
-
     const [someCol] = useCollection(someColRef)
 
     useEffect(() => {
@@ -29,6 +18,7 @@ const FirebaseTest = () => {
 
     return (
         <div>
+            <SignInModal />
         </div>
     )
 }

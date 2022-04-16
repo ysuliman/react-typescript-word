@@ -5,15 +5,19 @@ import classNames from 'classnames'
 import { GameStateContext } from '../../context/GameStateProvider'
 import NewGameButton from './new-game-button/NewGameButton.component'
 import Title from './title/Title.component'
+import FirebaseTest from '../../firebase/FirebaseTest'
 
 const Navbar = () => {
     const { isLightMode } = useContext(GameStateContext)
 
     return (
         <nav className={classNames(styles.navbar, isLightMode && styles.light)}>
-            <NewGameButton />
+            <div>
+                <NewGameButton />
+                <LightModeToggle />
+            </div>
             <Title />
-            <LightModeToggle />
+            <FirebaseTest />
         </nav>
     )
 }

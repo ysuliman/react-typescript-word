@@ -47,7 +47,6 @@ const App = () => {
 
   return (
     <div className={classNames(styles.App, isLightMode && styles.light)}>
-      <FirebaseTest />
       <Navbar />
       <AlertContainer />
       <GuessGrid />
