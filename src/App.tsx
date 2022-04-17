@@ -9,7 +9,6 @@ import { GameDispatchContext, GameStateContext } from './context/GameStateProvid
 
 import styles from './App.module.css'
 import Footer from './components/footer/Footer.component';
-import FirebaseTest from './firebase/FirebaseTest';
 
 const App = () => {
   const gameDispatch = useContext(GameDispatchContext)

@@ -11,7 +11,7 @@ import { auth } from "../FirebaseConfig";
 
 import React, { useEffect, useState } from 'react'
 import { EmailAuthProvider, GoogleAuthProvider, onAuthStateChanged, User } from 'firebase/auth';
-import { Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
 
 
 const uiConfig = {
@@ -38,17 +38,17 @@ const SignInModal = () => {
     }, [])
 
     const [user, setUser] = useState<User | null>(null)
-    const [isModalOpen, setIsModalOpen] = useState(true)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     return (
         <>
             {!!!user &&
-                <button onClick={() => setIsModalOpen(true)}>Sign In</button>}
+                <Button onClick={() => setIsModalOpen(true)}>Sign In</Button>}
             {!!user &&
-                <button onClick={() => setIsModalOpen(true)}>{auth.currentUser?.displayName}</button>
+                <Button onClick={() => setIsModalOpen(true)}>{auth.currentUser?.displayName}</Button>
             }
 
-            <Modal isOpen={isModalOpen} toggle={() => setIsModalOpen(!isModalOpen)}>
+            <Modal isOpen={isModalOpen} toggle={() => setIsModalOpen(!isModalOpen)} className={'modal-dialog-centered'}>
                 <ModalBody>
                     <div>
                         {!!!user &&
@@ -59,15 +59,19 @@ const SignInModal = () => {
                         }
                         {!!user &&
                             <div className={styles.signedIn}>
-                                Hello {auth.currentUser?.displayName}. You are now signed In!
-                                <button className={styles.button} onClick={() => {
-                                    auth.signOut()
-                                    setIsModalOpen(false)
-                                }}>Sign-out</button>
+                                <p>Hello {auth.currentUser?.displayName}. You are now signed In!</p>
                             </div>
                         }
                     </div>
                 </ModalBody>
+                {!!user &&
+                    <ModalFooter>
+                        <Button onClick={() => {
+                            auth.signOut()
+                            setIsModalOpen(false)
+                        }}>Sign-out</Button>
+                    </ModalFooter>
+                }
             </Modal>
         </>
     )

@@ -1,6 +1,10 @@
 .container {}
 
-.signedIn {}
+.signedIn {
+    text-align: center;
+    padding: 3rem;
+    font-size: inherit;
+}
 
 .logo {}
 
