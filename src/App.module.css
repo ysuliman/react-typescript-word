@@ -13,11 +13,13 @@
   flex-direction: column;
   justify-content: flex-start;
   width: 100vw;
-  width: -webkit-stretch;
+  width: stretch;
+  width: -moz-available;
   width: fill-available;
   width: -webkit-fill-available;
   height: 100vh;
-  min-height: -webkit-;
+  max-height: stretch;
+  max-height: -moz-available;
   max-height: fill-available;
   max-height: -webkit-fill-available;
   overflow: hidden;
