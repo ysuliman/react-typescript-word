@@ -1,61 +1,53 @@
-import React, { useContext, useState } from 'react';
-import LightModeToggle from './light-mode-toggle/LightModeToggle.component';
-import styles from './Navbar.module.css';
-import classNames from 'classnames';
-import { GameStateContext } from '../../context/GameStateProvider';
-import NewGameButton from './new-game-button/NewGameButton.component';
-import Title from './title/Title.component';
-import FirebaseTest from '../../firebase/FirebaseTest';
 import {
-	Button,
 	Collapse,
-	Container,
 	Nav,
+	NavItem,
 	Navbar,
 	NavbarBrand,
 	NavbarToggler,
-	NavItem,
 } from 'reactstrap';
-import SignInModal from '../../firebase/SignInModal/SignInModal';
+import { useContext, useState } from 'react';
 
-const NavbarOld = () => {
+import FirebaseTest from '../../firebase/FirebaseTest';
+import { GameStateContext } from '../../context/GameStateProvider';
+import LightModeToggle from './light-mode-toggle/LightModeToggle.component';
+import NewGameButton from './new-game-button/NewGameButton.component';
+import Title from './title/Title.component';
+import classNames from 'classnames';
+import styles from './Navbar.module.css';
+
+const NavbarWord = () => {
 	const { isLightMode } = useContext(GameStateContext);
 
 	const [isToggleOpen, setIsToggleOpen] = useState(false);
 
-	const toggleNav = () =>
-		setIsToggleOpen(isOpen => !isOpen);
+	const toggleNav = () => setIsToggleOpen(isOpen => !isOpen);
 
 	return (
 		<>
 			<Navbar
 				light={isLightMode}
 				dark={!isLightMode}
-				expand='md'
+				expand='lg'
 				className={classNames(
-					styles.reactstrapnav
+					styles.navbar,
+					isLightMode && styles.light,
+					'px-3'
 				)}>
-				<NavbarBrand
-					className={classNames(
-						styles.title,
-						isLightMode && styles.light
-					)}>
-					Word
+				<NavbarToggler onClick={toggleNav}></NavbarToggler>
+				<NavbarBrand>
+					<Title />
 				</NavbarBrand>
 
-				<NavbarToggler
-					onClick={toggleNav}></NavbarToggler>
+				<NewGameButton />
 
 				<Collapse isOpen={isToggleOpen} navbar>
 					<Nav navbar>
 						<NavItem>
-							<FirebaseTest />
-						</NavItem>
-						<NavItem>
-							<NewGameButton />
-						</NavItem>
-						<NavItem>
 							<LightModeToggle />
+						</NavItem>
+						<NavItem>
+							<FirebaseTest />
 						</NavItem>
 					</Nav>
 				</Collapse>
@@ -64,4 +56,4 @@ const NavbarOld = () => {
 	);
 };
 
-export default NavbarOld;
+export default NavbarWord;

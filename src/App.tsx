@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import AlertContainer from './components/alert/AlertContainer.component';
 import GuessGrid from './components/guess-grid/GuessGrid.component';
 import Keyboard from './components/keyboard/Keyboard.component';
-import NavbarOld from './components/navbar/Navbar.component';
+import NavbarWord from './components/navbar/Navbar.component';
 import {
 	GameDispatchContext,
 	GameStateContext,
@@ -65,7 +65,7 @@ const App = () => {
 				styles.App,
 				isLightMode && styles.light
 			)}>
-			<NavbarOld />
+			<NavbarWord />
 			<AlertContainer />
 			<GuessGrid />
 			<Keyboard />

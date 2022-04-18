@@ -1,31 +1,32 @@
-import React, { useContext, useRef } from 'react'
-import styles from './NewGameButton.module.css'
-import classNames from 'classnames'
-import { GameDispatchContext, GameStateContext } from '../../../context/GameStateProvider'
+import {
+	GameDispatchContext,
+	GameStateContext,
+} from '../../../context/GameStateProvider';
+import React, { useContext, useRef } from 'react';
+
+import { Button } from 'reactstrap';
+import classNames from 'classnames';
+import styles from './NewGameButton.module.css';
 
 const NewGameButton = () => {
-    const { isLightMode } = useContext(GameStateContext)
-    const gameDispatch = useContext(GameDispatchContext)
+	const { isLightMode } = useContext(GameStateContext);
+	const gameDispatch = useContext(GameDispatchContext);
 
-    const buttonRef = useRef<HTMLButtonElement>(null)
+	const handleClick: React.MouseEventHandler<HTMLButtonElement> = e => {
+		gameDispatch({ type: 'NEWGAME' });
+		e.currentTarget.blur();
+	};
 
-    const handleClick = () => {
-        gameDispatch({ type: 'NEWGAME' })
-        setTimeout(() => {
-            buttonRef.current?.blur()
-        }, 500)
-    }
+	return (
+		<Button
+			className={classNames(
+				styles['new-game'],
+				isLightMode && styles.light
+			)}
+			onClick={handleClick}>
+			NEW GAME
+		</Button>
+	);
+};
 
-    return (
-        <button
-            className={classNames(
-                styles['new-game'],
-                isLightMode && styles.light
-            )}
-            onClick={handleClick}
-            ref={buttonRef}
-        >NEW GAME</button>
-    )
-}
-
-export default NewGameButton
+export default NewGameButton;
