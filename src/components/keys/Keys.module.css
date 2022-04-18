@@ -15,7 +15,11 @@
     border-radius: .25em;
     cursor: pointer;
     user-select: none;
-    transition: background-color .5s ease-in, box-shadow .5s ease-in, color .5s ease-in;
+    transition:
+        background-color .5s ease-in,
+        box-shadow .5s ease-in,
+        color .5s ease-in,
+        fill .5s ease-in;
 }
 
 .key.light {

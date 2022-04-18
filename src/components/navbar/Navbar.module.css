@@ -1,14 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap');
+
+.reactstrapnav {
+	background-color: inherit;
+}
+
 .navbar {
-    flex: 0 0 auto;
-    background-color: inherit;
-    border-bottom: .08rem solid hsl(240, 2%, 23%);
-    padding: .6rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    transition: border-bottom .5s ease-in;
+	flex: 0 0 auto;
+	background-color: inherit;
+	border-bottom: 0.08rem solid hsl(240, 2%, 23%);
+	padding: 0.6rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	transition: border-bottom 0.5s ease-in;
 }
 
 .navbar.light {
-    border-bottom: .08rem solid hsl(214, 9%, 84%)
+	border-bottom: 0.08rem solid hsl(214, 9%, 84%);
+}
+
+.title {
+	font-size: clamp(1.5rem, 5.5vh, 3.5rem);
+	font-family: 'Merriweather', serif;
+	color: white;
+	transition: color 0.5s ease-in;
+}
+
+.title.light {
+	color: black;
 }
