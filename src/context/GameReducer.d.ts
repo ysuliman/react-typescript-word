@@ -1,14 +1,25 @@
 interface INonLetterDispatchAction {
-    type:
-    'SUBMIT'
-    | 'DELETE'
-    | 'CHECKWINLOSE'
-    | 'TOGGLELIGHTMODE'
-    | 'NEWGAME'
-    | 'ALERTCOMPLETE'
-    | 'SHAKECOMPLETE'
+	type:
+		| 'SUBMIT'
+		| 'DELETE'
+		| 'CHECKWINLOSE'
+		| 'NEWGAME'
+		| 'ALERTCOMPLETE'
+		| 'SHAKECOMPLETE';
 }
 
-interface ILetterDispatchAction { type: 'LETTERPRESS'; letter: string; }
+interface ILetterDispatchAction {
+	type: 'LETTERPRESS';
+	letter: string;
+}
+interface ILightModeDispatchAction {
+	type: 'LIGHTMODE';
+	payload: boolean;
+}
 
-export type GameDispatchAction = INonLetterDispatchAction | ILetterDispatchAction | IShakeDispatchAction | IRemoveAlertDispatchAction
+export type GameDispatchAction =
+	| ILightModeDispatchAction
+	| INonLetterDispatchAction
+	| ILetterDispatchAction
+	| IShakeDispatchAction
+	| IRemoveAlertDispatchAction;

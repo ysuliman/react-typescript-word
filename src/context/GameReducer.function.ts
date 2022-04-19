@@ -67,8 +67,8 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
 			draft.alerts.shift();
 			return draft;
 
-		case 'TOGGLELIGHTMODE':
-			draft.isLightMode = !draft.isLightMode;
+		case 'LIGHTMODE':
+			draft.isLightMode = action.payload;
 			return draft;
 	}
 

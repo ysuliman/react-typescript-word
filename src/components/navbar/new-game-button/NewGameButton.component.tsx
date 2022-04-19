@@ -2,9 +2,9 @@ import {
 	GameDispatchContext,
 	GameStateContext,
 } from '../../../context/GameStateProvider';
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 
-import { Button } from 'reactstrap';
+import Button from 'react-bootstrap/esm/Button';
 import classNames from 'classnames';
 import styles from './NewGameButton.module.css';
 
@@ -24,7 +24,9 @@ const NewGameButton = () => {
 				isLightMode && styles.light
 			)}
 			onClick={handleClick}>
-			NEW GAME
+			NEW
+			<br />
+			GAME
 		</Button>
 	);
 };
