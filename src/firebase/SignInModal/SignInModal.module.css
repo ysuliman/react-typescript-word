@@ -1,21 +1,3 @@
-.container {}
-
-.signedIn {
-    text-align: center;
-    padding: 3rem;
-    font-size: inherit;
+.modal-header-dark {
+	border-bottom: 'rgb(0, 0,0) solid 2px';
 }
-
-.logo {}
-
-.logoIcon {}
-
-.caption {}
-
-.skip {}
-
-.skip:HOVER {}
-
-.firebaseUi {}
-
-.button {}

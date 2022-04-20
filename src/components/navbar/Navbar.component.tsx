@@ -60,9 +60,9 @@ const NavbarWord = () => {
 										Profile
 									</h3>
 								</Nav.Item>
-								<Nav.Link href='#' className='mx-auto'>
+								<Nav.Item className='mx-auto'>
 									<FirebaseTest />
-								</Nav.Link>
+								</Nav.Item>
 								<Nav.Link href='#' className='mx-auto mb-4'>
 									History
 								</Nav.Link>

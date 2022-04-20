@@ -3,20 +3,20 @@
 import './firebaseui-styling.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Button, Modal, ModalBody, ModalFooter } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import {
 	EmailAuthProvider,
 	GoogleAuthProvider,
 	User,
 	onAuthStateChanged,
 } from 'firebase/auth';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { FirebaseAuth } from 'react-firebaseui';
+import { GameStateContext } from '../../context/GameStateProvider';
 import { auth } from '../FirebaseConfig';
+import classNames from 'classnames';
 import styles from './SignInModal.module.css';
-
-// Styles
 
 // word-yousef firebaseApp
 
@@ -38,59 +38,95 @@ const SignInModal = () => {
 	useEffect(() => {
 		onAuthStateChanged(auth, user => {
 			setUser(user);
-			console.log(user);
 		});
 	}, []);
 
 	const [user, setUser] = useState<User | null>(null);
+
+	// Modal
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const handleClose = () => setIsModalOpen(false);
+	const handleOpen = () => setIsModalOpen(true);
+
+	// Theme
+	const { isLightMode } = useContext(GameStateContext);
 
 	return (
 		<>
-			{!!!user && (
-				<Button onClick={() => setIsModalOpen(true)}>Sign In</Button>
-			)}
+			{!!!user && <Button onClick={handleOpen}>Sign In</Button>}
 			{!!user && (
-				<Button onClick={() => setIsModalOpen(true)}>
+				<Button onClick={handleOpen}>
 					{auth.currentUser?.displayName}
 				</Button>
 			)}
 
 			<Modal
-				isOpen={isModalOpen}
-				toggle={() => setIsModalOpen(!isModalOpen)}
-				className={'modal-dialog-centered'}>
-				<ModalBody>
+				show={isModalOpen}
+				onHide={handleClose}
+				centered={true}
+				contentClassName={!isLightMode ? 'bg-dark' : undefined}>
+				<Modal.Header
+					closeButton
+					bsPrefix={classNames(
+						'modal-header',
+						!isLightMode && 'bg-dark'
+					)}
+					closeVariant={isLightMode ? undefined : 'white'}
+					style={
+						!isLightMode
+							? { borderBottom: '#171717 solid 2px' }
+							: undefined
+					}>
+					<Modal.Title
+						bsPrefix={classNames(
+							'modal-title',
+							!isLightMode && 'text-white'
+						)}>
+						Sign In
+					</Modal.Title>
+				</Modal.Header>
+				<Modal.Body
+					bsPrefix={classNames(
+						'modal-body',
+						!isLightMode && 'bg-dark'
+					)}>
 					<div>
 						{!!!user && (
 							<div>
-								<StyledFirebaseAuth
-									className={styles.firebaseUi}
+								<FirebaseAuth
 									uiConfig={uiConfig}
 									firebaseAuth={auth}
 								/>
 							</div>
 						)}
 						{!!user && (
-							<div className={styles.signedIn}>
-								<p>
-									Hello {auth.currentUser?.displayName}. You
-									are now signed In!
-								</p>
-							</div>
+							<p
+								className={classNames(
+									'text-center',
+									!isLightMode && 'text-light'
+								)}>
+								Hello {auth.currentUser?.displayName}. You are
+								now signed In!
+							</p>
 						)}
 					</div>
-				</ModalBody>
+				</Modal.Body>
 				{!!user && (
-					<ModalFooter>
+					<Modal.Footer
+						style={
+							!isLightMode
+								? { borderTop: '#171717 solid 2px' }
+								: undefined
+						}>
 						<Button
 							onClick={() => {
 								auth.signOut();
 								setIsModalOpen(false);
-							}}>
+							}}
+							className='mx-auto'>
 							Sign-out
 						</Button>
-					</ModalFooter>
+					</Modal.Footer>
 				)}
 			</Modal>
 		</>
