@@ -4,7 +4,6 @@ import {
 } from '../../../context/GameStateProvider';
 import React, { useContext } from 'react';
 
-import Button from 'react-bootstrap/esm/Button';
 import classNames from 'classnames';
 import styles from './NewGameButton.module.css';
 
@@ -18,7 +17,7 @@ const NewGameButton = () => {
 	};
 
 	return (
-		<Button
+		<button
 			className={classNames(
 				styles['new-game'],
 				isLightMode && styles.light
@@ -27,7 +26,7 @@ const NewGameButton = () => {
 			NEW
 			<br />
 			GAME
-		</Button>
+		</button>
 	);
 };
 
