@@ -61,12 +61,9 @@ const NavbarWord = () => {
 										Profile
 									</h3>
 								</Nav.Item>
-								<Nav.Item>
+								<Nav.Item bsPrefix='mb-4'>
 									<SignInButtons />
 								</Nav.Item>
-								<Nav.Link href='#' className='mx-auto mb-4'>
-									History
-								</Nav.Link>
 								<Nav.Item>
 									<h3
 										className={classNames(

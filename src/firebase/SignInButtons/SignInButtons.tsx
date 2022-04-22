@@ -58,13 +58,13 @@ const SignInButtons = () => {
 		handleLightModeChange(
 			isLightMode,
 			'google-sign-in-button-bg-color',
-			'hsl(0, 0%, 88%)',
+			'hsl(0, 0%, 80%)',
 			'hsl(0, 0%, 17%)'
 		);
 		handleLightModeChange(
 			isLightMode,
 			'google-sign-in-button-hover-bg-color',
-			'hsl(0, 0%, 72%)',
+			'hsl(0, 0%, 70%)',
 			'hsl(0, 0%, 9%)'
 		);
 		handleLightModeChange(
@@ -103,7 +103,11 @@ const SignInButtons = () => {
 			)}
 			{!!user && (
 				<>
-					<h5 className={classNames('text-center my-3')}>
+					<h5
+						className={classNames(
+							'text-center my-3',
+							!isLightMode && 'text-white'
+						)}>
 						Hello {auth.currentUser?.displayName}!
 					</h5>
 					<Stack className='justify-content-center'>

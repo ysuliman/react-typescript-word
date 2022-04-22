@@ -34,8 +34,7 @@
 	color: rgba(255, 255, 255, 0.87);
 }
 
-.firebaseui-form-actions
-	.mdl-button--raised.mdl-button--colored.firebaseui-button {
+.firebaseui-form-actions.mdl-button--raised.mdl-button--colored.firebaseui-button {
 	background: rgba(0, 0, 0, 0.1);
 }
 
