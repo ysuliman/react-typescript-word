@@ -1,6 +1,7 @@
 import './firebaseui-styling.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { Button, Container, Stack } from 'react-bootstrap';
 import {
 	EmailAuthProvider,
 	GoogleAuthProvider,
@@ -9,12 +10,15 @@ import {
 } from 'firebase/auth';
 import { useContext, useEffect, useState } from 'react';
 
-import { Button } from 'react-bootstrap';
+import { FaDoorOpen } from 'react-icons/fa';
+import { FcStatistics } from 'react-icons/fc';
 import { FirebaseAuth } from 'react-firebaseui';
 import { GameStateContext } from '../../context/GameStateProvider';
+import { MdLogout } from 'react-icons/md';
 import { auth } from '../FirebaseConfig';
 import classNames from 'classnames';
 import { handleLightModeChange } from '../../helpers/HandleRootVariableLightModeChange';
+import styles from './SignInButtons.module.css';
 
 const uiConfig = {
 	signInFlow: 'popup',
@@ -97,17 +101,37 @@ const SignInButtons = () => {
 					<FirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
 				</div>
 			)}
-			{!!!user && (
+			{!!user && (
 				<>
-					<p className={classNames('text-center')}>
-						Hello {auth.currentUser?.displayName}. You are now
-						signed In!
-					</p>
-					<button
-						className={classNames('mdl-button')}
-						onClick={handleSignOut}>
-						Sign-out
-					</button>
+					<h5 className={classNames('text-center my-3')}>
+						Hello {auth.currentUser?.displayName}!
+					</h5>
+					<Stack className='justify-content-center'>
+						<button
+							className={classNames(
+								styles['offcanvas-button'],
+								isLightMode
+									? styles['statistics-button']
+									: styles['statistics-button-dark'],
+								'mb-3'
+							)}
+							aria-label='Statistics'>
+							<FcStatistics />
+							<span>Stats</span>
+						</button>
+						<button
+							className={classNames(
+								styles['offcanvas-button'],
+								styles['sign-out-button']
+							)}
+							onClick={handleSignOut}
+							aria-label='Sign Out'>
+							<FaDoorOpen
+								color={isLightMode ? '#794000' : '#c06702'}
+							/>
+							<span>Sign out</span>
+						</button>
+					</Stack>
 				</>
 			)}
 		</>

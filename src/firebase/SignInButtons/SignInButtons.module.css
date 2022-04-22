@@ -1,0 +1,48 @@
+/* Offcanvas Buttons */
+
+.offcanvas-button {
+	border: none;
+	border-radius: 10px;
+	font-size: var(--clamped-button-font-size);
+	padding: 0.8rem 1rem;
+	margin: 0 24px 0 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.5s ease;
+}
+
+.offcanvas-button > span {
+	margin-left: 16px;
+}
+
+/* Signout Button */
+
+.sign-out-button {
+	background-color: var(--google-sign-in-button-bg-color);
+	color: var(--google-sign-in-button-text-color);
+}
+
+.sign-out-button:hover {
+	background-color: var(--google-sign-in-button-hover-bg-color);
+}
+
+/* Statistics Button */
+
+.statistics-button {
+	background-color: hsl(190, 100%, 71%);
+	color: var(--google-sign-in-button-text-color);
+}
+
+.statistics-button-dark {
+	background-color: hsl(192, 100%, 43%);
+	color: var(--google-sign-in-button-text-color);
+}
+
+.statistics-button:hover {
+	background-color: hsl(190, 100%, 61%);
+}
+
+.statistics-button-dark:hover {
+	background-color: hsl(192, 100%, 33%);
+}
