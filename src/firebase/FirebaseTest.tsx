@@ -1,26 +1,21 @@
+import { useEffect, useMemo } from 'react';
+
 import { collection } from 'firebase/firestore';
-import { useCollection } from "react-firebase-hooks/firestore";
-import { useEffect, useMemo } from 'react'
 import { db } from './FirebaseConfig';
-import SignInModal from './SignInModal/SignInModal';
+import { useCollection } from 'react-firebase-hooks/firestore';
 
 const FirebaseTest = () => {
-    // Firestore
-    const someColRef = useMemo(() => collection(db, 'someCollection'), [])
-    const [someCol] = useCollection(someColRef)
+	// Firestore
+	const someColRef = useMemo(() => collection(db, 'someCollection'), []);
+	const [someCol] = useCollection(someColRef);
 
-    useEffect(() => {
-        someCol?.forEach(element => {
-            console.log(element.data().user)
-        })
-    }, [someCol])
+	useEffect(() => {
+		someCol?.forEach(element => {
+			console.log(element.data().user);
+		});
+	}, [someCol]);
 
+	return <div></div>;
+};
 
-    return (
-        <div>
-            <SignInModal />
-        </div>
-    )
-}
-
-export default FirebaseTest
+export default FirebaseTest;

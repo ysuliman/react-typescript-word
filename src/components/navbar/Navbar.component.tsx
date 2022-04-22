@@ -6,6 +6,7 @@ import LightModeToggle from './light-mode-toggle/LightModeToggle.component';
 import Nav from 'react-bootstrap/esm/Nav';
 import Navbar from 'react-bootstrap/esm/Navbar';
 import NewGameButton from './new-game-button/NewGameButton.component';
+import SignInButtons from '../../firebase/SignInButtons/SignInButtons';
 import Title from './title/Title.component';
 import classNames from 'classnames';
 import styles from './Navbar.module.css';
@@ -60,8 +61,8 @@ const NavbarWord = () => {
 										Profile
 									</h3>
 								</Nav.Item>
-								<Nav.Item className='mx-auto'>
-									<FirebaseTest />
+								<Nav.Item>
+									<SignInButtons />
 								</Nav.Item>
 								<Nav.Link href='#' className='mx-auto mb-4'>
 									History

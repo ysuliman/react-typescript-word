@@ -1,0 +1,139 @@
+.firebaseui-container {
+	background: rgba(0, 0, 0, 0.05);
+	margin-bottom: 15px;
+	min-height: 150px;
+	padding-top: 10px;
+	border-radius: 20px;
+	box-shadow: none;
+}
+
+.firebaseui-container.firebaseui-page-provider-sign-in {
+	background: transparent;
+	box-shadow: none;
+	min-height: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+}
+
+.firebaseui-container.firebaseui-id-page-callback {
+	background: transparent;
+	box-shadow: none;
+	margin-top: 40px;
+	height: 84px;
+	min-height: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+}
+
+.firebaseui-card-header {
+	display: none;
+}
+
+.firebaseui-subtitle,
+.firebaseui-text {
+	color: rgba(255, 255, 255, 0.87);
+}
+
+.firebaseui-form-actions
+	.mdl-button--raised.mdl-button--colored.firebaseui-button {
+	background: rgba(0, 0, 0, 0.1);
+}
+
+.firebaseui-id-dismiss-info-bar {
+	display: block;
+}
+
+.firebaseui-info-bar {
+	border: 0;
+	border-radius: 10px;
+	left: 5%;
+	right: 5%;
+	top: 10%;
+	bottom: 10%;
+}
+
+/* Button Styles */
+.mdl-button {
+	border-radius: 10px !important;
+	box-shadow: none !important;
+}
+
+/* Google Sign In Button */
+/* .firebaseui-idp-button,
+.mdl-js-button,
+.mdl-button--raised,
+.firebaseui-id-idp-button, */
+.firebaseui-idp-google {
+	max-width: unset !important;
+	min-width: unset !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	padding: 1rem !important;
+	background-color: var(--google-sign-in-button-bg-color) !important;
+	transition: background-color 0.5s ease-out !important;
+}
+
+.firebaseui-idp-google:hover {
+	background-color: var(--google-sign-in-button-hover-bg-color) !important;
+}
+
+.firebaseui-idp-google > .firebaseui-idp-text {
+	color: var(--google-sign-in-button-text-color) !important;
+}
+
+/* Email Password Sign In Button */
+/* .firebaseui-idp-button,
+.mdl-js-button,
+.mdl-button--raised,
+.firebaseui-id-idp-button, */
+.firebaseui-idp-password {
+	max-width: unset !important;
+	min-width: unset !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	padding: 1rem !important;
+	background-color: var(--email-sign-in-button-bg-color) !important;
+	color: var(--email-sign-in-button-text-color) !important;
+	transition: background-color 0.5s ease-in !important;
+}
+
+.firebaseui-idp-password:hover {
+	background-color: var(--email-sign-in-button-hover-bg-color) !important;
+}
+
+.firebaseui-idp-password > .firebaseui-idp-text {
+	color: var(--email-sign-in-button-text-color) !important;
+}
+
+.firebaseui-container {
+	max-width: 100% !important;
+}
+/* @media screen and (min-width: 768px) {
+	.firebaseui-container {
+		max-width: 100% !important;
+	}
+}
+
+@media screen and (min-width: 1240px) {
+	.firebaseui-container {
+		max-width: 100% !important;
+	}
+} */
+
+.firebaseui-idp-text,
+.firebaseui-idp-text-long,
+.firebaseui-idp-text-short {
+	font-size: var(--clamped-button-font-size) !important;
+}
+
+.firebaseui-idp-icon {
+	height: var(--clamped-button-font-size) !important;
+	width: var(--clamped-button-font-size) !important;
+}
+
+.firebaseui-tos,
+.firebaseui-tospp-full-message {
+	font-size: var(--clamped-button-font-size) !important;
+}

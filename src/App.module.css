@@ -7,6 +7,21 @@
 	padding: 0;
 }
 
+:root {
+	/* Google Sign In Button */
+	--google-sign-in-button-bg-color: rgb(222, 222, 222);
+	--google-sign-in-button-text-color: hsl(0, 0%, 27%);
+	--google-sign-in-button-hover-bg-color: hsl(0, 0%, 24%);
+
+	/* Email Password Sign In Button */
+	--email-sign-in-button-bg-color: hsl(5, 69%, 54%);
+	--email-sign-in-button-hover-bg-color: hsl(5, 69%, 51%);
+	--email-sign-in-button-text-color: #fff;
+
+	/* Sign In Buttons Text */
+	--clamped-button-font-size: clamp(1.2rem, 3.4vmin, 1.5rem);
+}
+
 .App {
 	background-color: #111112;
 	display: flex;
