@@ -1,42 +1,32 @@
 import { useCallback, useContext, useEffect } from 'react';
-import classNames from 'classnames';
 
 import AlertContainer from './components/alert/AlertContainer.component';
-import GuessGrid from './components/guess-grid/GuessGrid.component';
-import Keyboard from './components/keyboard/Keyboard.component';
-import NavbarWord from './components/navbar/Navbar.component';
-import {
-	GameDispatchContext,
-	GameStateContext,
-} from './context/GameStateProvider';
-
-import styles from './App.module.css';
 import Footer from './components/footer/Footer.component';
+import { GameDispatchContext } from './context/game-state/GameStateProvider';
+import GuessGrid from './components/guess-grid/GuessGrid.component';
+import { IsLightModeStateContext } from './context/light-mode/LightModeProvider';
+import Keyboard from './components/keyboard/Keyboard.component';
+import NavbarWord from './components/navbar/NavbarWord.component';
+import classNames from 'classnames';
+import styles from './App.module.css';
 
 const App = () => {
 	const gameDispatch = useContext(GameDispatchContext);
-	const { isLightMode } = useContext(GameStateContext);
+	const isLightMode = useContext(IsLightModeStateContext);
 
 	// Workaround for notch on IOS
 	useEffect(() => {
-		document.body.style.transition =
-			'background-color .5s ease-in';
+		document.body.style.transition = 'background-color .5s ease-in';
 	}, []);
 	useEffect(() => {
-		document.body.style.backgroundColor = isLightMode
-			? '#fff'
-			: '#111112';
+		document.body.style.backgroundColor = isLightMode ? '#fff' : '#111112';
 	}, [isLightMode]);
 
 	const handleKeyPress = useCallback(
 		(ev: KeyboardEvent) => {
-			if (ev.key === 'Enter')
-				return gameDispatch({ type: 'SUBMIT' });
+			if (ev.key === 'Enter') return gameDispatch({ type: 'SUBMIT' });
 
-			if (
-				ev.key === 'Backspace' ||
-				ev.key === 'Delete'
-			)
+			if (ev.key === 'Backspace' || ev.key === 'Delete')
 				return gameDispatch({ type: 'DELETE' });
 
 			if (ev.key.match(/^[a-zA-Z]$/))
@@ -52,19 +42,12 @@ const App = () => {
 	useEffect(() => {
 		window.addEventListener('keydown', handleKeyPress);
 		return () => {
-			window.removeEventListener(
-				'keydown',
-				handleKeyPress
-			);
+			window.removeEventListener('keydown', handleKeyPress);
 		};
 	}, [handleKeyPress]);
 
 	return (
-		<div
-			className={classNames(
-				styles.App,
-				isLightMode && styles.light
-			)}>
+		<div className={classNames(styles.App, isLightMode && styles.light)}>
 			<NavbarWord />
 			<AlertContainer />
 			<GuessGrid />

@@ -14,8 +14,7 @@ import { getNewGameState } from './InitialGameStateConfig';
 export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
 	// Get a new game state.
 	if (action.type === 'NEWGAME') {
-		const { isLightMode } = draft;
-		draft = getNewGameState(isLightMode);
+		draft = getNewGameState();
 		return draft;
 	}
 	// Signals that the game has started.
@@ -65,10 +64,6 @@ export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
 
 		case 'ALERTCOMPLETE':
 			draft.alerts.shift();
-			return draft;
-
-		case 'LIGHTMODE':
-			draft.isLightMode = action.payload;
 			return draft;
 	}
 

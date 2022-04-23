@@ -1,5 +1,5 @@
 import { FaDoorOpen } from 'react-icons/fa';
-import { GameStateContext } from '../../../context/GameStateProvider';
+import { IsLightModeStateContext } from '../../../context/light-mode/LightModeProvider';
 import { Stack } from 'react-bootstrap';
 import { auth } from '../../../firebase/FirebaseConfig';
 import classNames from 'classnames';
@@ -13,7 +13,7 @@ const SignOutButton = () => {
 	};
 
 	// Light Mode
-	const { isLightMode } = useContext(GameStateContext);
+	const isLightMode = useContext(IsLightModeStateContext);
 
 	return (
 		<Stack>

@@ -1,47 +1,52 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 
-import { TileRowProps } from './TileRow'
-import Tile from '../tile/Tile.component'
-import { GameStateContext } from '../../context/GameStateProvider'
+import { GameStateContext } from '../../context/game-state/GameStateProvider';
+import Tile from '../tile/Tile.component';
+import { TileRowProps } from './TileRow';
 
 const TileRow = ({
-    activeGuessIndex,
-    rowIndex,
-    currentGuess,
-    wordLength,
-    isShakeRow,
-    isDanceRow,
-    isFlipRow
+	activeGuessIndex,
+	rowIndex,
+	currentGuess,
+	wordLength,
+	isShakeRow,
+	isDanceRow,
+	isFlipRow,
 }: TileRowProps) => {
-    const { guessLetterStatuses, gameStart } = useContext(GameStateContext)
+	const { guessLetterStatuses, gameStart } = useContext(GameStateContext);
 
-    const [letterToFlipIndex, setLetterToFlipInd] = useState(-1)
+	const [letterToFlipIndex, setLetterToFlipInd] = useState(-1);
 
-    useEffect(() => { if (isFlipRow) setLetterToFlipInd(0) }, [isFlipRow])
-    useEffect(() => { if (gameStart) setLetterToFlipInd(-10) }, [gameStart])
+	useEffect(() => {
+		if (isFlipRow) setLetterToFlipInd(0);
+	}, [isFlipRow]);
+	useEffect(() => {
+		if (gameStart) setLetterToFlipInd(-10);
+	}, [gameStart]);
 
+	const tiles = [...Array(wordLength)].map((_, index) => {
+		const letter = currentGuess[index] || '';
+		const isActive = !!letter && activeGuessIndex === rowIndex;
 
-    const tiles = [...Array(wordLength)].map((_, index) => {
-        const letter = currentGuess[index] || ''
-        const isActive = !!letter && activeGuessIndex === rowIndex
+		const letterStatus = guessLetterStatuses[rowIndex][index];
 
-        const letterStatus = guessLetterStatuses[rowIndex][index]
+		return (
+			<Tile
+				key={index}
+				letterIndex={index}
+				isActive={isActive}
+				letter={letter}
+				letterStatus={letterStatus}
+				letterToFlipIndex={letterToFlipIndex}
+				setLetterToFlipInd={setLetterToFlipInd}
+				shake={isShakeRow}
+				dance={isDanceRow}
+				isLastLetter={wordLength === index + 1}
+			/>
+		);
+	});
 
-        return <Tile
-            key={index}
-            letterIndex={index}
-            isActive={isActive}
-            letter={letter}
-            letterStatus={letterStatus}
-            letterToFlipIndex={letterToFlipIndex}
-            setLetterToFlipInd={setLetterToFlipInd}
-            shake={isShakeRow}
-            dance={isDanceRow}
-            isLastLetter={wordLength === index + 1}
-        />
-    })
+	return <>{tiles}</>;
+};
 
-    return <>{tiles}</>
-}
-
-export default TileRow
+export default TileRow;

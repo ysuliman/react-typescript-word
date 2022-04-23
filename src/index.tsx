@@ -1,16 +1,19 @@
+import App from './App';
+import GameReducerProvider from './context/game-state/GameStateProvider';
+import IsLightModeProvider from './context/light-mode/LightModeProvider';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import GameReducerProvider from './context/GameStateProvider';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <GameReducerProvider>
-      <App />
-    </GameReducerProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+	<React.StrictMode>
+		<IsLightModeProvider>
+			<GameReducerProvider>
+				<App />
+			</GameReducerProvider>
+		</IsLightModeProvider>
+	</React.StrictMode>,
+	document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

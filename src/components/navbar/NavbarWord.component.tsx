@@ -2,7 +2,7 @@ import { Container, Offcanvas } from 'react-bootstrap';
 import { User, onAuthStateChanged } from 'firebase/auth';
 import { useContext, useEffect, useState } from 'react';
 
-import { GameStateContext } from '../../context/GameStateProvider';
+import { IsLightModeStateContext } from '../../context/light-mode/LightModeProvider';
 import LightModeToggle from './light-mode-toggle/LightModeToggle.component';
 import ModifiedFirebaseAuthUI from './modified-firebase-auth-ui/ModifiedFirebaseAuthUI';
 import Nav from 'react-bootstrap/esm/Nav';
@@ -13,7 +13,7 @@ import SignedInOptionButtons from './signed-in-option-buttons/SignedInOptionButt
 import Title from './title/Title.component';
 import { auth } from '../../firebase/FirebaseConfig';
 import classNames from 'classnames';
-import styles from './Navbar.module.css';
+import styles from './NavbarWord.module.css';
 
 const NavbarWord = () => {
 	// Auth
@@ -26,7 +26,7 @@ const NavbarWord = () => {
 	const [user, setUser] = useState<User | null>(null);
 
 	// Light Mode
-	const { isLightMode } = useContext(GameStateContext);
+	const isLightMode = useContext(IsLightModeStateContext);
 
 	return (
 		<>

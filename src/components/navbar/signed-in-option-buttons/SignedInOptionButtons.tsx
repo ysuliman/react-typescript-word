@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 
 import { FcStatistics } from 'react-icons/fc';
-import { GameStateContext } from '../../../context/GameStateProvider';
+import { IsLightModeStateContext } from '../../../context/light-mode/LightModeProvider';
 import { Stack } from 'react-bootstrap';
 import classNames from 'classnames';
 import styles from '../OffCanvasButtons.module.css';
 
 const SignedInOptionButtons = () => {
-	const { isLightMode } = useContext(GameStateContext);
+	const isLightMode = useContext(IsLightModeStateContext);
 
 	return (
 		<Stack>

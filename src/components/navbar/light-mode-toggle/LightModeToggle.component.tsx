@@ -1,9 +1,9 @@
 import './LightModeToggle.css';
 
 import {
-	GameDispatchContext,
-	GameStateContext,
-} from '../../../context/GameStateProvider';
+	IsLightModeStateContext,
+	SetIsLightModeStateContext,
+} from '../../../context/light-mode/LightModeProvider';
 
 import ReactSwitch from 'react-switch';
 import { useContext } from 'react';
@@ -13,12 +13,11 @@ interface LightModeToggleProps {
 }
 
 const LightModeToggle = ({ size = 40 }: LightModeToggleProps) => {
-	const gameDispatch = useContext(GameDispatchContext);
-
-	const { isLightMode } = useContext(GameStateContext);
+	const isLightMode = useContext(IsLightModeStateContext);
+	const SetIsLightMode = useContext(SetIsLightModeStateContext);
 
 	const toggleLightMode = () => {
-		gameDispatch({ type: 'LIGHTMODE', payload: !isLightMode });
+		SetIsLightMode(prevIsLightMode => !prevIsLightMode);
 	};
 
 	return (

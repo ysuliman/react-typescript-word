@@ -1,84 +1,105 @@
+import {
+	AnimationEvent,
+	TransitionEvent,
+	useContext,
+	useEffect,
+	useState,
+} from 'react';
+import {
+	GameDispatchContext,
+	GameStateContext,
+} from '../../context/game-state/GameStateProvider';
 
-import styles from './Tile.module.css'
-import classNames from 'classnames'
-import { TileProps } from './Tile'
-import { useContext, useEffect, useState, AnimationEvent, TransitionEvent } from 'react'
-import { GameDispatchContext, GameStateContext } from '../../context/GameStateProvider'
+import { IsLightModeStateContext } from '../../context/light-mode/LightModeProvider';
+import { TileProps } from './Tile';
+import classNames from 'classnames';
+import styles from './Tile.module.css';
 
-const Tile = ({ letterIndex, isActive, letter, letterStatus, letterToFlipIndex, setLetterToFlipInd, shake, dance, isLastLetter }: TileProps) => {
-    const [isFlip, setIsFlip] = useState(false)
-    const [isDance, setIsDance] = useState(false)
-    const [isPop, setIsPop] = useState(false)
-    const [letterClass, setLetterClass] = useState('')
+const Tile = ({
+	letterIndex,
+	isActive,
+	letter,
+	letterStatus,
+	letterToFlipIndex,
+	setLetterToFlipInd,
+	shake,
+	dance,
+	isLastLetter,
+}: TileProps) => {
+	const [isFlip, setIsFlip] = useState(false);
+	const [isDance, setIsDance] = useState(false);
+	const [isPop, setIsPop] = useState(false);
+	const [letterClass, setLetterClass] = useState('');
 
-    const gameDispatch = useContext(GameDispatchContext)
-    const { isLightMode, gameStart } = useContext(GameStateContext)
+	const gameDispatch = useContext(GameDispatchContext);
+	const { gameStart } = useContext(GameStateContext);
 
-    useEffect(() => {
-        if (gameStart) {
-            setLetterClass('')
-            setIsDance(false)
-            setIsFlip(false)
-        }
-    }, [gameStart])
+	const isLightMode = useContext(IsLightModeStateContext);
 
-    useEffect(() => {
-        if (letterStatus && letterIndex === letterToFlipIndex) {
-            setIsFlip(true)
-        }
-    }, [letterIndex, letterStatus, letterToFlipIndex])
+	useEffect(() => {
+		if (gameStart) {
+			setLetterClass('');
+			setIsDance(false);
+			setIsFlip(false);
+		}
+	}, [gameStart]);
 
-    useEffect(() => {
-        if (dance) {
-            setTimeout(() => {
-                setIsDance(true)
-            }, letterIndex * 100);
-        }
-    }, [dance, letterIndex])
+	useEffect(() => {
+		if (letterStatus && letterIndex === letterToFlipIndex) {
+			setIsFlip(true);
+		}
+	}, [letterIndex, letterStatus, letterToFlipIndex]);
 
-    useEffect(() => {
-        if (isActive) setIsPop(true)
-    }, [isActive])
+	useEffect(() => {
+		if (dance) {
+			setTimeout(() => {
+				setIsDance(true);
+			}, letterIndex * 100);
+		}
+	}, [dance, letterIndex]);
 
-    const handleTransitionEnd = (e: TransitionEvent) => {
-        if (e.propertyName === 'color' || e.propertyName.includes('border')) return
+	useEffect(() => {
+		if (isActive) setIsPop(true);
+	}, [isActive]);
 
-        const nextLetterIndex = letterIndex + 1
-        if (isLastLetter && !isFlip) {
-            gameDispatch({ type: 'CHECKWINLOSE' })
-        }
-        setIsFlip(false)
-        setLetterClass(letterStatus)
-        setLetterToFlipInd(nextLetterIndex)
-    }
+	const handleTransitionEnd = (e: TransitionEvent) => {
+		if (e.propertyName === 'color' || e.propertyName.includes('border'))
+			return;
 
-    const handleAnimationEnd = (e: AnimationEvent<HTMLDivElement>) => {
-        if (isLastLetter && e.animationName.includes('shake')) gameDispatch({ type: 'SHAKECOMPLETE' })
-        if (e.animationName.includes('PopIn')) setIsPop(false)
-    }
+		const nextLetterIndex = letterIndex + 1;
+		if (isLastLetter && !isFlip) {
+			gameDispatch({ type: 'CHECKWINLOSE' });
+		}
+		setIsFlip(false);
+		setLetterClass(letterStatus);
+		setLetterToFlipInd(nextLetterIndex);
+	};
 
-    return (
-        <div
-            className={classNames(
-                styles.tile,
-                isFlip && styles.flip,
-                isActive && styles.active,
-                isPop && styles.pop,
-                letterClass === 'correct' && styles.correct,
-                letterClass === 'wrong-letter' && styles['wrong-letter'],
-                letterClass === 'wrong-location' && styles['wrong-location'],
-                shake && styles.shake,
-                isDance && styles.dance,
-                isLightMode && styles.light
+	const handleAnimationEnd = (e: AnimationEvent<HTMLDivElement>) => {
+		if (isLastLetter && e.animationName.includes('shake'))
+			gameDispatch({ type: 'SHAKECOMPLETE' });
+		if (e.animationName.includes('PopIn')) setIsPop(false);
+	};
 
-            )}
+	return (
+		<div
+			className={classNames(
+				styles.tile,
+				isFlip && styles.flip,
+				isActive && styles.active,
+				isPop && styles.pop,
+				letterClass === 'correct' && styles.correct,
+				letterClass === 'wrong-letter' && styles['wrong-letter'],
+				letterClass === 'wrong-location' && styles['wrong-location'],
+				shake && styles.shake,
+				isDance && styles.dance,
+				isLightMode && styles.light
+			)}
+			onTransitionEnd={handleTransitionEnd}
+			onAnimationEnd={handleAnimationEnd}>
+			{letter}
+		</div>
+	);
+};
 
-            onTransitionEnd={handleTransitionEnd}
-            onAnimationEnd={handleAnimationEnd}
-        >
-            {letter}
-        </div>
-    )
-}
-
-export default Tile
+export default Tile;

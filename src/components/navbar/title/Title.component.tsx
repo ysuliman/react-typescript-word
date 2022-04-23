@@ -1,13 +1,15 @@
-import React, { useContext } from 'react'
-import { GameStateContext } from '../../../context/GameStateProvider'
-import styles from './Title.module.css'
-import classNames from 'classnames'
+import { IsLightModeStateContext } from '../../../context/light-mode/LightModeProvider';
+import classNames from 'classnames';
+import styles from './Title.module.css';
+import { useContext } from 'react';
 
 const Title = () => {
-    const { isLightMode } = useContext(GameStateContext)
-    return (
-        <h1 className={classNames(styles.title, isLightMode && styles.light)}>Word</h1>
-    )
-}
+	const isLightMode = useContext(IsLightModeStateContext);
+	return (
+		<h1 className={classNames(styles.title, isLightMode && styles.light)}>
+			Word
+		</h1>
+	);
+};
 
-export default Title
+export default Title;

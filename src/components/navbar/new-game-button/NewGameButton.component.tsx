@@ -1,14 +1,13 @@
-import {
-	GameDispatchContext,
-	GameStateContext,
-} from '../../../context/GameStateProvider';
 import React, { useContext } from 'react';
 
+import { GameDispatchContext } from '../../../context/game-state/GameStateProvider';
+import { IsLightModeStateContext } from '../../../context/light-mode/LightModeProvider';
 import classNames from 'classnames';
 import styles from './NewGameButton.module.css';
 
 const NewGameButton = () => {
-	const { isLightMode } = useContext(GameStateContext);
+	const isLightMode = useContext(IsLightModeStateContext);
+
 	const gameDispatch = useContext(GameDispatchContext);
 
 	const handleClick: React.MouseEventHandler<HTMLButtonElement> = e => {

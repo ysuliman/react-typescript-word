@@ -10,7 +10,7 @@ import {
 import { useContext, useEffect, useState } from 'react';
 
 import { FirebaseAuth } from 'react-firebaseui';
-import { GameStateContext } from '../../../context/GameStateProvider';
+import { IsLightModeStateContext } from '../../../context/light-mode/LightModeProvider';
 import { auth } from '../../../firebase/FirebaseConfig';
 import classNames from 'classnames';
 import { googleSignInLightModeCSSVariables } from './googleSignInLightModeCSSVariables';
@@ -44,7 +44,7 @@ const ModifiedFirebaseAuthUI = () => {
 	const [user, setUser] = useState<User | null>(null);
 
 	// Light Mode
-	const { isLightMode } = useContext(GameStateContext);
+	const isLightMode = useContext(IsLightModeStateContext);
 
 	useEffect(() => {
 		handleLightModeChange(isLightMode, googleSignInLightModeCSSVariables);
