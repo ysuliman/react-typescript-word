@@ -1,18 +1,31 @@
 import { Container, Offcanvas } from 'react-bootstrap';
+import { User, onAuthStateChanged } from 'firebase/auth';
+import { useContext, useEffect, useState } from 'react';
 
-import FirebaseTest from '../../firebase/FirebaseTest';
 import { GameStateContext } from '../../context/GameStateProvider';
 import LightModeToggle from './light-mode-toggle/LightModeToggle.component';
+import ModifiedFirebaseAuthUI from './modified-firebase-auth-ui/ModifiedFirebaseAuthUI';
 import Nav from 'react-bootstrap/esm/Nav';
 import Navbar from 'react-bootstrap/esm/Navbar';
 import NewGameButton from './new-game-button/NewGameButton.component';
-import SignInButtons from '../../firebase/SignInButtons/SignInButtons';
+import SignOutButton from './sign-out-button/SignOutButton';
+import SignedInOptionButtons from './signed-in-option-buttons/SignedInOptionButtons';
 import Title from './title/Title.component';
+import { auth } from '../../firebase/FirebaseConfig';
 import classNames from 'classnames';
 import styles from './Navbar.module.css';
-import { useContext } from 'react';
 
 const NavbarWord = () => {
+	// Auth
+	useEffect(() => {
+		onAuthStateChanged(auth, user => {
+			setUser(user);
+		});
+	}, []);
+
+	const [user, setUser] = useState<User | null>(null);
+
+	// Light Mode
 	const { isLightMode } = useContext(GameStateContext);
 
 	return (
@@ -61,16 +74,26 @@ const NavbarWord = () => {
 										Profile
 									</h3>
 								</Nav.Item>
-								<Nav.Item bsPrefix='mb-4'>
-									<SignInButtons />
+								<Nav.Item>
+									<ModifiedFirebaseAuthUI />
 								</Nav.Item>
+								{!!user && (
+									<>
+										<Nav.Item>
+											<SignedInOptionButtons />
+										</Nav.Item>
+										<Nav.Item>
+											<SignOutButton />
+										</Nav.Item>
+									</>
+								)}
 								<Nav.Item>
 									<h3
 										className={classNames(
 											isLightMode
 												? 'text-muted'
 												: 'text-light',
-											'ms-4 my-4'
+											'ms-4 my-4 mt-5'
 										)}>
 										Settings
 									</h3>

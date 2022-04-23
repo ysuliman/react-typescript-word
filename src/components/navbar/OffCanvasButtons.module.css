@@ -14,12 +14,15 @@
 
 .offcanvas-button > span {
 	margin-left: 16px;
+	transition: color 0.5s ease;
 }
 
 /* Signout Button */
-
 .sign-out-button {
 	background-color: var(--google-sign-in-button-bg-color);
+}
+
+.sign-out-button > span {
 	color: var(--google-sign-in-button-text-color);
 }
 
@@ -28,15 +31,17 @@
 }
 
 /* Statistics Button */
-
 .statistics-button {
-	background-color: hsl(190, 100%, 71%);
-	color: var(--google-sign-in-button-text-color);
+	background-color: hsl(190, 100%, 74%);
+	color: black;
 }
 
 .statistics-button-dark {
-	background-color: hsl(192, 100%, 43%);
-	color: var(--google-sign-in-button-text-color);
+	background-color: hsl(192, 100%, 40%);
+}
+
+.statistics-button-dark > span {
+	color: white;
 }
 
 .statistics-button:hover {

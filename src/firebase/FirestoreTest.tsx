@@ -4,7 +4,7 @@ import { collection } from 'firebase/firestore';
 import { db } from './FirebaseConfig';
 import { useCollection } from 'react-firebase-hooks/firestore';
 
-const FirebaseTest = () => {
+const FirestoreTest = () => {
 	// Firestore
 	const someColRef = useMemo(() => collection(db, 'someCollection'), []);
 	const [someCol] = useCollection(someColRef);
@@ -18,4 +18,4 @@ const FirebaseTest = () => {
 	return <div></div>;
 };
 
-export default FirebaseTest;
+export default FirestoreTest;
