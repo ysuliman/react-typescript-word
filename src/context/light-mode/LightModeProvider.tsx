@@ -1,4 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
+
+import { useMediaQuery } from 'react-responsive';
 
 export const IsLightModeStateContext = createContext(true);
 export const SetIsLightModeStateContext = createContext<
@@ -6,7 +8,15 @@ export const SetIsLightModeStateContext = createContext<
 >(() => {});
 
 const IsLightModeProvider: React.FC = ({ children }) => {
-	const [isLightModeState, setIsLightMode] = useState(true);
+	const systemPrefersDark = useMediaQuery({
+		query: '(prefers-color-scheme: dark)',
+	});
+
+	const [isLightModeState, setIsLightMode] = useState(!systemPrefersDark);
+
+	useEffect(() => {
+		setIsLightMode(!systemPrefersDark);
+	}, [systemPrefersDark]);
 
 	return (
 		<IsLightModeStateContext.Provider value={isLightModeState}>

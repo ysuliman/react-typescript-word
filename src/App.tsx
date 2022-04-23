@@ -12,6 +12,8 @@ import styles from './App.module.css';
 
 const App = () => {
 	const gameDispatch = useContext(GameDispatchContext);
+
+	// Light Mode
 	const isLightMode = useContext(IsLightModeStateContext);
 
 	// Workaround for notch on IOS
