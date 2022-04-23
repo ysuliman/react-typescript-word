@@ -40,6 +40,7 @@ export const getNewGameState = () => {
 		isFlipActiveRow: false,
 		gameStart: true,
 		alerts: [],
+		isNavExpanded: false,
 	};
 
 	return newGameState;

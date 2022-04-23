@@ -13,8 +13,14 @@ interface ILetterDispatchAction {
 	letter: string;
 }
 
+interface IToggleNavDispatchAction {
+	type: 'TOGGLE_NAV';
+	payload: boolean; // true = expanded, false = collapsed
+}
+
 export type GameDispatchAction =
 	| INonLetterDispatchAction
 	| ILetterDispatchAction
 	| IShakeDispatchAction
-	| IRemoveAlertDispatchAction;
+	| IRemoveAlertDispatchAction
+	| IToggleNavDispatchAction;

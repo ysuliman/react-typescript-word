@@ -2,6 +2,7 @@ import { Container, Offcanvas } from 'react-bootstrap';
 import { User, onAuthStateChanged } from 'firebase/auth';
 import { useContext, useEffect, useState } from 'react';
 
+import { GameDispatchContext } from '../../context/game-state/GameStateProvider';
 import { IsLightModeStateContext } from '../../context/light-mode/LightModeProvider';
 import LightModeToggle from './light-mode-toggle/LightModeToggle.component';
 import ModifiedFirebaseAuthUI from './modified-firebase-auth-ui/ModifiedFirebaseAuthUI';
@@ -28,6 +29,9 @@ const NavbarWord = () => {
 	// Light Mode
 	const isLightMode = useContext(IsLightModeStateContext);
 
+	// Handle Navbar Expanded
+	const gameDispatch = useContext(GameDispatchContext);
+
 	return (
 		<>
 			<Navbar
@@ -37,7 +41,13 @@ const NavbarWord = () => {
 				className={classNames(
 					styles.navbar,
 					isLightMode && styles.light
-				)}>
+				)}
+				onToggle={isExpanded => {
+					gameDispatch({
+						type: 'TOGGLE_OFFCANVAS',
+						payload: isExpanded,
+					});
+				}}>
 				<Container>
 					<Nav.Item>
 						<NewGameButton />

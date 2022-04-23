@@ -12,6 +12,13 @@ import { getNewGameState } from './InitialGameStateConfig';
  **/
 
 export const gameReducer = (draft: GameState, action: GameDispatchAction) => {
+	// Pause the game while offcanvas nav is open.
+	if (action.type === 'TOGGLE_OFFCANVAS') {
+		draft.isNavExpanded = action.payload;
+		return draft;
+	}
+	if (draft.isNavExpanded) return draft;
+
 	// Get a new game state.
 	if (action.type === 'NEWGAME') {
 		draft = getNewGameState();

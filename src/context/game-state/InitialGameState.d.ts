@@ -28,4 +28,5 @@ export type GameState = {
 	isFlipActiveRow: boolean;
 	gameStart: boolean;
 	alerts: AlertMessage[];
+	isNavExpanded: boolean;
 };
